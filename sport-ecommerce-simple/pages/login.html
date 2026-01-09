@@ -42,18 +42,18 @@
             </div>
 
             <!-- Form Đăng Nhập -->
-            <form id="loginForm" class="auth-form">
-              <!-- Nhập Email -->
+            <form id="loginForm" class="auth-form" onsubmit="return false;">
+              <!-- Nhập Email hoặc Họ Tên -->
               <div class="form-group">
                 <label for="email" class="form-label">
-                  Địa Chỉ Email <span class="required">*</span>
+                  Email hoặc Họ Tên <span class="required">*</span>
                 </label>
                 <input
-                  type="email"
+                  type="text"
                   id="email"
                   name="email"
                   class="form-input"
-                  placeholder="Nhập email của bạn"
+                  placeholder="Nhập email hoặc họ tên đã đăng ký"
                   required
                 />
                 <span class="error-message" id="emailError"></span>
@@ -84,9 +84,13 @@
                 <a href="#" class="forgot-link">Quên mật khẩu?</a>
               </div>
 
-              <!-- Nút Gửi -->
-              <button type="submit" class="btn btn-primary btn-block">
-                Đăng Nhập
+              <!-- Nút Gửi: type="button" để tránh submit reload -->
+              <button
+                type="button"
+                class="btn btn-primary btn-block"
+                onclick="dangNhap()"
+              >
+                Đăng nhập
               </button>
             </form>
 
@@ -102,8 +106,39 @@
       </div>
     </main>
 
-    <!-- JavaScript: Xác thực và gửi form -->
-    <script src="../js/main.js"></script>
-    <script src="../js/login.js"></script>
+    <script>
+      // Hàm đơn giản cho đăng nhập (BEGINNER)
+      function dangNhap() {
+        // Lấy dữ liệu từ form
+        var inputTaiKhoan = document.getElementById("email").value.trim();
+        var matKhau = document.getElementById("password").value;
+
+        // Lấy dữ liệu đã lưu khi đăng ký
+        var tenDaDangKy = localStorage.getItem("username"); // dạng "Họ Tên"
+        var emailDaDangKy = localStorage.getItem("email");
+        var matKhauDaDangKy = localStorage.getItem("password");
+
+        // Kiểm tra rỗng
+        if (!inputTaiKhoan || !matKhau) {
+          alert("Vui lòng nhập đầy đủ thông tin");
+          return;
+        }
+
+        // So sánh: cho phép login bằng username (Họ Tên) hoặc email
+        var taiKhoanHopLe =
+          (tenDaDangKy && inputTaiKhoan === tenDaDangKy) ||
+          (emailDaDangKy && inputTaiKhoan === emailDaDangKy);
+
+        if (taiKhoanHopLe && matKhau === matKhauDaDangKy) {
+          // Đăng nhập thành công: đánh dấu trạng thái
+          localStorage.setItem("trangThai", "daDangNhap");
+          alert("Đăng nhập thành công!");
+          // Quay về trang chủ (index.html nằm ở thư mục cha)
+          window.location.href = "../index.html";
+        } else {
+          alert("Tên tài khoản/email hoặc mật khẩu không đúng");
+        }
+      }
+    </script>
   </body>
 </html>

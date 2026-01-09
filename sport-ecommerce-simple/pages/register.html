@@ -135,7 +135,11 @@
               </div>
 
               <!-- Nút Gửi -->
-              <button type="submit" class="btn btn-primary btn-block">
+              <button
+                type="button"
+                class="btn btn-primary btn-block"
+                onclick="dangKy()"
+              >
                 Tạo Tài Khoản
               </button>
             </form>
@@ -151,9 +155,46 @@
         </div>
       </div>
     </main>
+    <script>
+      function dangKy() {
+        // Lấy dữ liệu từ form
+        var firstName = document.getElementById("firstName").value.trim();
+        var lastName = document.getElementById("lastName").value.trim();
+        var email = document.getElementById("email").value.trim();
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("confirmPassword").value;
 
-    <!-- JavaScript: Xác thực và gửi form -->
-    <script src="../js/main.js"></script>
-    <script src="../js/register.js"></script>
+        // Ghép họ + tên
+        var username = firstName + " " + lastName;
+
+        // Kiểm tra rỗng
+        if (
+          firstName === "" ||
+          lastName === "" ||
+          email === "" ||
+          password === "" ||
+          confirmPassword === ""
+        ) {
+          alert("Vui lòng nhập đầy đủ thông tin");
+          return;
+        }
+
+        // Kiểm tra mật khẩu khớp
+        if (password !== confirmPassword) {
+          alert("Mật khẩu xác nhận không khớp");
+          return;
+        }
+
+        // Lưu vào localStorage
+        localStorage.setItem("username", username);
+        localStorage.setItem("email", email);
+        localStorage.setItem("password", password);
+
+        alert("Đăng ký thành công! Chuyển sang đăng nhập");
+
+        // Chuyển sang trang login
+        window.location.href = "login.html";
+      }
+    </script>
   </body>
 </html>
