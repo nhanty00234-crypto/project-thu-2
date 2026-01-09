@@ -14,14 +14,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
   background-image: url("https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1920&h=1080&fit=crop");
   background-size: cover;
   background-position: center;
-  background-blend-mode: overlay;
   color: var(--white);
-  margin-bottom: var(--spacing-2xl);
-  overflow: hidden;
 }
 
 .hero-overlay {
