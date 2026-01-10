@@ -1,30 +1,27 @@
 /* ============================================
    AUTH PAGES STYLES (LOGIN & REGISTER)
    ============================================
-   Shared styles for login and register pages
+   GIAO DIỆN DÙNG CHUNG CHO ĐĂNG NHẬP ĐĂNG KÝ
    ============================================ */
 
 /* Auth Page Container */
 .auth-page {
-  min-height: calc(100vh - 200px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-xl) var(--spacing-md);
-  background: linear-gradient(135deg, var(--light-gray) 0%, var(--white) 100%);
 }
 
 .auth-container {
   width: 100%;
-  max-width: 500px;
+  max-width: 450px;
 }
 
 /* Auth Card: White card containing the form */
 .auth-card {
-  background-color: var(--white);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-xl);
+  border-radius: 30px;
+  padding: 20px;
   box-shadow: var(--shadow-lg);
+  /* chỗ này chưa tìm hiểu box-shadow */
 }
 
 /* Auth Header: Title and description */
@@ -34,22 +31,19 @@
 }
 
 .auth-header h1 {
-  font-size: 2rem;
-  margin-bottom: var(--spacing-sm);
+  font-size: 50px;
+  margin-top: 10px;
   color: var(--black);
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .auth-header p {
-  color: var(--dark-gray);
+  color: dark;
   font-size: 0.95rem;
 }
 
 /* Form Styles */
-.auth-form {
-  margin-bottom: var(--spacing-lg);
-}
 
 .form-group {
   margin-bottom: var(--spacing-md);
@@ -59,7 +53,7 @@
   display: block;
   font-weight: 500;
   color: var(--black);
-  margin-bottom: var(--spacing-xs);
+
   font-size: 0.95rem;
 }
 
@@ -72,7 +66,7 @@
   width: 100%;
   padding: var(--spacing-sm);
   border: 2px solid var(--gray);
-  border-radius: var(--radius-md);
+  border-radius: 10px;
   font-size: 1rem;
   transition: all 0.3s ease;
   font-family: inherit;
@@ -100,7 +94,7 @@
   display: block;
   color: var(--error);
   font-size: 0.875rem;
-  margin-top: var(--spacing-xs);
+  margin-bottom: -20px;
   min-height: 20px;
 }
 
