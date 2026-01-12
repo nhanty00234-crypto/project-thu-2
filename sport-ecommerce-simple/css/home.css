@@ -61,13 +61,6 @@
   line-height: 1.6;
 }
 
-.hero-actions {
-  display: flex;
-  gap: var(--spacing-md);
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
 /* Featured Products Section */
 .featured-products {
   padding: var(--spacing-2xl) 0;

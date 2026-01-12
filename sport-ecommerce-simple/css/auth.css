@@ -9,6 +9,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 120px;
 }
 
 .auth-container {
@@ -21,13 +22,15 @@
   border-radius: 30px;
   padding: 20px;
   box-shadow: var(--shadow-lg);
+
+  margin-top: -90px;
   /* chỗ này chưa tìm hiểu box-shadow */
 }
 
 /* Auth Header: Title and description */
 .auth-header {
   text-align: center;
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: 30px;
 }
 
 .auth-header h1 {
