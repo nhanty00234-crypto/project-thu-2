@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url("https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1920&h=1080&fit=crop");
+  background-image: url("/imgae/photo-1510566337590-2fc1f21d0faa.avif");
   background-size: cover;
   background-position: center;
   color: var(--white);
@@ -26,11 +26,6 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 78, 137, 0.8) 0%,
-    rgba(26, 101, 158, 0.8) 100%
-  );
 }
 
 .hero-content {
