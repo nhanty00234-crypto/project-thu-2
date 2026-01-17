@@ -1,59 +1,70 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Áo Bóng Đá Tây Ninh - Chuyên Đồ Thể Thao & Đồ Đội</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <link rel="stylesheet" href="css/kieudang.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SPORTZONE.NET - Chuyên Đồ Thể Thao & Đồ Đội</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/kieudang.css" />
 </head>
 <body>
 
     <div class="thanh-dau-trang">
-        <div class="khoi-bao-ngoai flex-can-deu">
-            <span><i class="fa fa-map-marker-alt le-phai-nho"></i> Hệ thống cửa hàng tại TP. Bà rịa, Long Toàn...</span>
-            <span>Hotline: 0786.041.209 (Zalo đặt đội)</span>
+        <div class="khoi-bao-ngoai flex-top">
+            <div class="thong-bao-top">
+                <p>MIỄN PHÍ VẬN CHUYỂN CHO ĐƠN HÀNG TỪ 699.000Đ</p>
+            </div>
+            <div class="lien-ket-top">
+                <a href="#"><i class="fa fa-map-marker-alt"></i> Hệ thống cửa hàng</a>
+                <span class="vach-ngan">|</span>
+                <a href="#">Theo dõi đơn hàng</a>
+                <span class="vach-ngan">|</span>
+                <span>Hotline: 0786.041.209</span>
+            </div>
         </div>
     </div>
 
     <nav class="menu-chinh">
-        <div class="khoi-bao-ngoai flex-can-deu">
+        <div class="khoi-bao-ngoai flex-chinh">
             
-            <div class="logo-thuong-hieu">
-                <span class="chu-do">SPORT</span><span class="chu-xanh">ZONE.NET</span>
-            </div>
+            <a href="#" class="logo-thuong-hieu">
+                <span class="chu-trang">SPORT</span><span class="chu-do">ZONE.NET</span>
+            </a>
 
             <ul class="danh-sach-menu">
-                <li><a href="#">Hàng Mới</a></li>
-                <li><a href="#">Nam</a></li>
-                <li><a href="#">Nữ</a></li>
-                <li><a href="#">Trẻ Em</a></li>
-                <li><a href="#">Phụ Kiện</a></li>
-                <li><a href="#">Thương Hiệu</a></li>
-                <li><a href="#">Thể Thao</a></li>
-                <li><a href="#">Ưu Đãi</a></li>
-
+                <li><a href="#" class="menu-hot">ƯU ĐÃI</a></li>
+                <li><a href="#">HÀNG MỚI</a></li>
+                <li><a href="#">NAM</a></li>
+                <li><a href="#">NỮ</a></li>
+                <li><a href="#">TRẺ EM</a></li>
+                <li><a href="#">THƯƠNG HIỆU</a></li>
+                <li><a href="#">PHỤ KIỆN</a></li>
             </ul>
 
-            <div class="khu-vuc-icon">
+            <div class="khu-vuc-phai">
                 <div class="hop-tim-kiem">
-                    <input type="text" placeholder="Bạn đang tìm gì">
+                    <input type="text" placeholder="Tìm sản phẩm...">
+                    <button class="nut-tim"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </div>
-                <button class="nut-gio-hang">
-                    <i class="fa fa-shopping-cart"></i>
-                    <span id="cart-count">0</span>
-                </button>
+
+                <div class="nhom-icon">
+                    <a href="#" class="item-icon"><i class="fa-regular fa-user"></i></a>
+                    <a href="#" class="item-icon gio-hang">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span id="so-luong-gio">0</span>
+                    </a>
+                    <a href="#" class="item-icon"><i class="fa-solid fa-location-dot"></i></a>
+                </div>
             </div>
         </div>
     </nav>
 
     <section class="khu-vuc-banner">
         <div class="nen-banner">
-            <img src="https://images.unsplash.com/photo-1510566337590-2fc1f21d0faa?auto=format&fit=crop&q=80&w=1500" alt="Soccer Tây Ninh">
+            <img src="https://images.unsplash.com/photo-1510566337590-2fc1f21d0faa?auto=format&fit=crop&q=80&w=1500" alt="Soccer Tây Ninh" />
         </div>
-        
+
         <div class="khoi-bao-ngoai vi-tri-tuong-doi lop-noi-len">
             <div class="noi-dung-banner">
                 <h2>ƯU ĐÃI ĐẶT ĐỘI</h2>
@@ -68,7 +79,6 @@
 
     <div class="khu-vuc-dich-vu">
         <div class="khoi-bao-ngoai luoi-3-cot">
-            
             <div class="o-dich-vu">
                 <i class="fa fa-truck"></i>
                 <div>
@@ -110,16 +120,16 @@
 
     <footer class="chan-trang">
         <div class="khoi-bao-ngoai luoi-4-cot">
-            
             <div class="cot-chan-trang">
                 <h4 class="tieu-de-brand-footer">SPORTZONE.NET</h4>
-                <p> <b>Văn phòng:</b>
-                Chúng tôi tự hào là đơn vị cung cấp trang phục thể thao hàng đầu tại tỉnh Bà Rịa- Vũng Tàu.</p>
-                <p><b>Địa chỉ kho:</b></p>
+                <p>
+                    <b>Văn phòng:</b> Chúng tôi tự hào là đơn vị cung cấp trang phục thể thao hàng đầu tại tỉnh Bà Rịa- Vũng Tàu.
+                </p>
+                <p><b>Địa chỉ kho:</b> TP. Bà Rịa</p>
                 <p><i class="fa fa-phone"></i> 0786.041.209</p>
                 <p><i class="fa fa-envelope"></i> contact@SPORTZONE.net</p>
             </div>
-            
+
             <div class="cot-chan-trang">
                 <h4>Danh mục</h4>
                 <ul>
@@ -150,7 +160,7 @@
                 <div class="dang-ky-tin">
                     Nhận thông báo mẫu áo mới nhất!
                     <div class="nhom-nhap-lieu">
-                        <input type="text" placeholder="Số điện thoại">
+                        <input type="text" placeholder="Số điện thoại" />
                         <button>OK</button>
                     </div>
                 </div>

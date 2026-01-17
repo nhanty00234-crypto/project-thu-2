@@ -1,157 +1,178 @@
 /* --- 1. THIẾT LẬP CƠ BẢN (RESET) --- */
 * {
-    box-sizing: border-box; /* Tính kích thước bao gồm cả viền */
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f9fafb; /* Màu nền xám rất nhạt */
-    color: #1f2937; /* Màu chữ đen xám */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font hiện đại hơn */
+    background-color: #f9fafb;
+    color: #1f2937;
     line-height: 1.5;
 }
 
 /* Khung bao ngoài giúp nội dung nằm giữa màn hình */
 .khoi-bao-ngoai {
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto; /* Canh giữa */
+    max-width: 1300px; /* Tăng độ rộng giống web gốc */
+    margin: 0 auto;
     padding: 0 16px;
-    
 }
 
 a { text-decoration: none; color: inherit; transition: 0.3s; }
 ul { list-style: none; }
 
-/* --- 2. MÀU SẮC & TIỆN ÍCH --- */
+/* --- 2. TIỆN ÍCH --- */
 .chu-do { color: #dc2626; }
-.chu-xanh { color: #1e3a8a; }
-.le-phai-nho { margin-right: 8px; }
+.chu-trang { color: white; }
 .vi-tri-tuong-doi { position: relative; }
 .lop-noi-len { z-index: 10; }
 
-/* --- 3. THANH ĐẦU TRANG (Màu xanh đậm trên cùng) --- */
+/* --- 3. THANH TOP BAR (Màu xanh đậm trên cùng) --- */
 .thanh-dau-trang {
-    background-color: #1e3a8a;
+    background-color: #001e3c;
     color: white;
-    font-size: 12px;
-    padding: 8px 16px;
-    display: none; 
-    
-    /* Ẩn trên điện thoại */
+    font-size: 11px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-/* Chỉ hiện khi màn hình > 768px (Máy tính bảng trở lên) */
-@media (min-width: 768px) {
-    .thanh-dau-trang { display: block; }
-}
-
-.flex-can-deu {
+.flex-top {
     display: flex;
-    justify-content: space-between; /* Đẩy sang 2 bên */
+    justify-content: space-between;
     align-items: center;
-    background-color: redfa fa-map-marker-alt ;
 }
 
-.thanh-dau-trang i { color: #facc15; } /* Icon màu vàng */
+.lien-ket-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-/* --- 4. MENU CHÍNH --- */
+.vach-ngan { opacity: 0.3; }
+
+/* --- 4. MENU CHÍNH (HEADER CHUẨN SUPERSPORTS) --- */
 .menu-chinh {
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
-    position: sticky; /* Dính lên trên cùng khi cuộn */
-    top: 0;
-    z-index: 50;
-    border-bottom: 2px solid #dc2626; /* Viền đỏ dưới menu */
+    background-color: #001e3c; /* Màu xanh đen đặc trưng */
     padding: 12px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
+.flex-chinh {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Đẩy Logo trái - Menu giữa - Icon phải */
+}
+
+/* 4.1 Logo */
 .logo-thuong-hieu {
-    font-size: 1.5rem;
+    font-size: 22px;
     font-weight: 900;
     font-style: italic;
+    flex-shrink: 0;
 }
 
+/* 4.2 Danh sách Menu */
 .danh-sach-menu {
-    display: none; /* Mặc định ẩn trên điện thoại */
+    display: none; /* Ẩn trên mobile */
+    gap: 20px;
+    margin: 0 20px;
+}
+
+@media (min-width: 1024px) {
+    .danh-sach-menu { display: flex; }
 }
 
 .danh-sach-menu li a {
+    color: #ffffff;
+    font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
-    font-size: 14px;
-    color: #1f2937;
+    letter-spacing: 0.5px;
 }
 
-.danh-sach-menu li a:hover { color: #dc2626; }
+/* Mục ƯU ĐÃI màu đỏ đặc biệt */
+.menu-hot { color: #ff4d4d !important; }
 
-/* Hiện menu trên màn hình lớn */
-@media (min-width: 1024px) {
-    .danh-sach-menu {
-        display: flex;
-        gap: 24px;
-    }
+.danh-sach-menu li a:hover {
+    opacity: 0.7;
 }
 
-.khu-vuc-icon {
+/* 4.3 Cụm bên phải (Tìm kiếm & Icons) */
+.khu-vuc-phai {
     display: flex;
     align-items: center;
-    gap: 16px;
-    height:100%;
+    gap: 20px;
 }
 
-/* Ô tìm kiếm */
-.hop-tim-kiem input {
-    border: 1px solid #e5e7eb;
-    border-radius: 10px; /* Bo tròn tuyệt đối */
-    padding: 4px 16px;
-    font-size: 14px;
-    width: 200px;
-    outline: none;
-    width: 130%;
-    height: 40px;
-    padding-right: 20%;
-    
-    
+.hop-tim-kiem {
+    position: relative;
+    width: 240px;
+    display: none;
 }
-.hop-tim-kiem input:focus { border-color: #dc2626; }
-.hop-tim-kiem { display: none; }
 
 @media (min-width: 768px) {
     .hop-tim-kiem { display: block; }
 }
 
-/* Nút giỏ hàng */
-.nut-gio-hang {
-    position: relative;
+.hop-tim-kiem input {
+    width: 100%;
+    background-color: #1a3652; /* Màu tối hơn nền một chút */
+    border: none;
+    border-radius: 4px;
+    padding: 8px 35px 8px 15px;
+    color: white;
+    font-size: 13px;
+    outline: none;
+}
+
+.nut-tim {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
     background: none;
     border: none;
+    color: #94a3b8;
     cursor: pointer;
+}
+
+.nhom-icon {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.item-icon {
+    color: white;
     font-size: 20px;
-    color: #374151;
-    padding-left: 50px;
+    position: relative;
 }
 
-.nut-gio-hang:hover { color: #dc2626; }
-
-#cart-count {
+/* Badge số lượng giỏ hàng */
+#so-luong-gio {
     position: absolute;
-    top: -4px;
-    right: -4px;
-    background-color: #facc15; /* Màu vàng */
-    color: #b91c1c; /* Màu chữ đỏ */
+    top: -8px;
+    right: -10px;
+    background-color: #facc15;
+    color: #000;
     font-size: 10px;
-    border-radius: 50%;
-    padding: 2px 6px;
     font-weight: bold;
-    border: 1px solid white;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
 }
 
-/* --- 5. BANNER QUẢNG CÁO (HERO) --- */
+/* --- 5. BANNER QUẢNG CÁO --- */
 .khu-vuc-banner {
     position: relative;
-    height: 450px;
+    height: 480px;
     background-color: #111827;
     display: flex;
     align-items: center;
@@ -161,233 +182,186 @@ ul { list-style: none; }
 
 .nen-banner {
     position: absolute;
-    inset: 0; /* Tràn đầy khung */
+    inset: 0;
 }
 
 .nen-banner img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.5; /* Làm mờ ảnh để nổi chữ */
+    opacity: 0.6;
 }
 
 .noi-dung-banner {
-    border-left: 8px solid #facc15; /* Đường kẻ vàng bên trái */
+    border-left: 8px solid #facc15;
     padding-left: 24px;
 }
 
 .noi-dung-banner h2 {
-    font-size: 3rem;
-    font-weight: 700;
+    font-size: 3.5rem;
+    font-weight: 800;
     text-transform: uppercase;
     font-style: italic;
-    margin-bottom: 8px;
+    line-height: 1;
+    margin-bottom: 10px;
 }
 
 .noi-dung-banner p {
-    font-size: 1.25rem;
-    font-weight: 300;
+    font-size: 1.2rem;
     color: #e5e7eb;
-    text-transform: uppercase;
-    margin-bottom: 32px;
+    margin-bottom: 30px;
 }
 
-@media (min-width: 768px) {
-    .noi-dung-banner h2 { font-size: 4.5rem; }
-    .noi-dung-banner p { font-size: 1.5rem; }
-}
-
-.nhom-nut-bam { display: flex; gap: 16px; }
+.nhom-nut-bam { display: flex; gap: 15px; }
 
 .nut {
-    padding: 12px 32px;
+    padding: 14px 30px;
     font-weight: bold;
-    border-radius: 2px;
-    cursor: pointer;
+    text-transform: uppercase;
     border: none;
+    cursor: pointer;
     transition: 0.3s;
 }
 
-.nut-do {
-    background-color: #dc2626;
-    color: white;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-}
+.nut-do { background-color: #dc2626; color: white; }
 .nut-do:hover { background-color: #b91c1c; }
 
-.nut-trang {
-    background-color: white;
-    color: #1e3a8a;
-}
+.nut-trang { background-color: white; color: #001e3c; }
 .nut-trang:hover { background-color: #f3f4f6; }
 
 /* --- 6. KHU VỰC DỊCH VỤ --- */
 .khu-vuc-dich-vu {
     background-color: white;
-    padding: 32px 0;
+    padding: 40px 0;
     border-bottom: 1px solid #e5e7eb;
 }
 
 .luoi-3-cot {
     display: grid;
-    grid-template-columns: 1fr; /* Điện thoại: 1 cột */
-    gap: 32px;
-}
-
-@media (min-width: 768px) {
-    .luoi-3-cot { grid-template-columns: repeat(3, 1fr); } /* PC: 3 cột */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
 }
 
 .o-dich-vu {
     display: flex;
     align-items: center;
-    gap: 16px;
-    justify-content: center;
+    gap: 15px;
 }
 
-@media (min-width: 768px) {
-    .o-dich-vu { justify-content: flex-start; }
-    /* Đường kẻ ngăn cách giữa các dịch vụ trên PC */
-    .co-vien-doc {
-        border-left: 1px solid #e5e7eb;
-        border-right: 1px solid #e5e7eb;
-        padding: 0 16px;
-    }
+.co-vien-doc {
+    border-left: 1px solid #e5e7eb;
+    border-right: 1px solid #e5e7eb;
+    padding: 0 20px;
 }
 
-.o-dich-vu i {
-    color: #dc2626;
-    font-size: 30px;
+@media (max-width: 768px) {
+    .co-vien-doc { border: none; padding: 0; }
 }
 
-.o-dich-vu h4 { font-weight: bold; }
+.o-dich-vu i { color: #dc2626; font-size: 32px; }
+.o-dich-vu h4 { font-size: 16px; margin-bottom: 4px; }
 .o-dich-vu p { font-size: 14px; color: #6b7280; }
 
 /* --- 7. NỘI DUNG CHÍNH --- */
-.cach-le-tren-duoi { padding-top: 64px; padding-bottom: 64px; }
+.cach-le-tren-duoi { padding: 60px 0; }
 
 .tieu-de-muc {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     margin-bottom: 40px;
 }
 
 .tieu-de-muc h3 {
-    font-size: 1.875rem;
-    font-weight: bold;
+    font-size: 2rem;
     text-transform: uppercase;
     font-style: italic;
-    color: #1f2937;
 }
 
 .thanh-gach-chan {
     height: 4px;
-    width: 80px;
+    width: 60px;
     background-color: #dc2626;
-    margin-top: 8px;
+    margin-top: 10px;
 }
-
-.xem-tat-ca { color: #1d4ed8; font-weight: bold; }
-.xem-tat-ca:hover { text-decoration: underline; }
 
 .luoi-san-pham {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 cột trên điện thoại */
-    gap: 24px;
-}
-
-@media (min-width: 768px) {
-    .luoi-san-pham { grid-template-columns: repeat(3, 1fr); }
-}
-@media (min-width: 1024px) {
-    .luoi-san-pham { grid-template-columns: repeat(4, 1fr); }
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 25px;
 }
 
 /* --- 8. CHÂN TRANG (FOOTER) --- */
 .chan-trang {
-    background-color: #0f172a; /* Màu nền tối */
+    background-color: #001e3c;
     color: white;
-    padding-top: 64px;
-    padding-bottom: 32px;
+    padding: 60px 0 30px;
 }
 
 .luoi-4-cot {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 48px;
-}
-
-@media (min-width: 768px) {
-    .luoi-4-cot { grid-template-columns: repeat(4, 1fr); }
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
 }
 
 .tieu-de-brand-footer {
-    font-size: 1.5rem;
-    font-weight: 900;
-    font-style: italic;
-    color: #ef4444;
-    margin-bottom: 24px;
-}
-
-.cot-chan-trang p, .cot-chan-trang li {
-    font-size: 14px;
-    color: #9ca3af;
-    margin-bottom: 12px;
+    color: white;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
 .cot-chan-trang h4 {
-    font-weight: bold;
     text-transform: uppercase;
-    margin-bottom: 24px;
-    border-bottom: 1px solid #374151;
-    padding-bottom: 8px;
-    padding-left: 20px;
-    
+    margin-bottom: 20px;
+    font-size: 16px;
+    border-left: 3px solid #dc2626;
+    padding-left: 10px;
 }
 
-.cot-chan-trang li:hover { color: #ef4444; cursor: pointer; }
-.cot-chan-trang i { color: #ef4444; margin-right: 8px; }
+.cot-chan-trang ul li {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #94a3b8;
+    cursor: pointer;
+}
 
-.lien-ket-mxh { display: flex; gap: 16px; margin-bottom: 24px;  padding-left: 50px;}
+.cot-chan-trang ul li:hover { color: white; }
+
+.lien-ket-mxh { display: flex; gap: 15px; margin-top: 20px; }
 .lien-ket-mxh a {
-    width: 40px; height: 40px;
-    border-radius: 50%;
+    width: 35px; height: 35px;
+    background: #1a3652;
     display: flex; align-items: center; justify-content: center;
-    padding: 20px;
+    border-radius: 50%;
 }
 
 .dang-ky-tin {
-    background-color: #1f2937;
-    padding: 16px;
+    margin-top: 25px;
+    background: #1a3652;
+    padding: 15px;
     border-radius: 4px;
-    font-size: 12px;
-    color: #9ca3af;
 }
 
-.nhom-nhap-lieu { display: flex; margin-top: 8px; }
+.nhom-nhap-lieu { display: flex; margin-top: 10px; }
 .nhom-nhap-lieu input {
-    background-color: #374151;
+    flex: 1;
+    padding: 10px;
     border: none;
-    padding: 8px;
-    width: 100%;
-    color: white;
     outline: none;
 }
 .nhom-nhap-lieu button {
-    background-color: #dc2626;
+    background: #dc2626;
     color: white;
     border: none;
-    padding: 0 12px;
+    padding: 0 15px;
     cursor: pointer;
 }
-.nhom-nhap-lieu button:hover { background-color: #b91c1c; }
 
 .ban-quyen {
-    margin-top: 64px;
-    padding-top: 32px;
-    border-top: 1px solid #1f2937;
     text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
     font-size: 12px;
-    color: #6b7280;
+    color: #94a3b8;
 }
