@@ -1,6 +1,393 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
+/* --- 1. THIẾT LẬP CƠ BẢN (RESET) --- */
+* {
+    box-sizing: border-box; /* Tính kích thước bao gồm cả viền */
+    margin: 0;
+    padding: 0;
+}
 
-body { font-family: 'Roboto', sans-serif; }
-h1, h2, h3, .brand-font { font-family: 'Oswald', sans-serif; }
-.product-card:hover .buy-btn { transform: translateY(0); opacity: 1; }
-.buy-btn { transform: translateY(20px); opacity: 0; transition: all 0.3s; }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9fafb; /* Màu nền xám rất nhạt */
+    color: #1f2937; /* Màu chữ đen xám */
+    line-height: 1.5;
+}
+
+/* Khung bao ngoài giúp nội dung nằm giữa màn hình */
+.khoi-bao-ngoai {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto; /* Canh giữa */
+    padding: 0 16px;
+    
+}
+
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
+
+/* --- 2. MÀU SẮC & TIỆN ÍCH --- */
+.chu-do { color: #dc2626; }
+.chu-xanh { color: #1e3a8a; }
+.le-phai-nho { margin-right: 8px; }
+.vi-tri-tuong-doi { position: relative; }
+.lop-noi-len { z-index: 10; }
+
+/* --- 3. THANH ĐẦU TRANG (Màu xanh đậm trên cùng) --- */
+.thanh-dau-trang {
+    background-color: #1e3a8a;
+    color: white;
+    font-size: 12px;
+    padding: 8px 16px;
+    display: none; 
+    
+    /* Ẩn trên điện thoại */
+}
+
+/* Chỉ hiện khi màn hình > 768px (Máy tính bảng trở lên) */
+@media (min-width: 768px) {
+    .thanh-dau-trang { display: block; }
+}
+
+.flex-can-deu {
+    display: flex;
+    justify-content: space-between; /* Đẩy sang 2 bên */
+    align-items: center;
+    background-color: redfa fa-map-marker-alt ;
+}
+
+.thanh-dau-trang i { color: #facc15; } /* Icon màu vàng */
+
+/* --- 4. MENU CHÍNH --- */
+.menu-chinh {
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+    position: sticky; /* Dính lên trên cùng khi cuộn */
+    top: 0;
+    z-index: 50;
+    border-bottom: 2px solid #dc2626; /* Viền đỏ dưới menu */
+    padding: 12px 0;
+}
+
+.logo-thuong-hieu {
+    font-size: 1.5rem;
+    font-weight: 900;
+    font-style: italic;
+}
+
+.danh-sach-menu {
+    display: none; /* Mặc định ẩn trên điện thoại */
+}
+
+.danh-sach-menu li a {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #1f2937;
+}
+
+.danh-sach-menu li a:hover { color: #dc2626; }
+
+/* Hiện menu trên màn hình lớn */
+@media (min-width: 1024px) {
+    .danh-sach-menu {
+        display: flex;
+        gap: 24px;
+    }
+}
+
+.khu-vuc-icon {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    height:100%;
+}
+
+/* Ô tìm kiếm */
+.hop-tim-kiem input {
+    border: 1px solid #e5e7eb;
+    border-radius: 10px; /* Bo tròn tuyệt đối */
+    padding: 4px 16px;
+    font-size: 14px;
+    width: 200px;
+    outline: none;
+    width: 130%;
+    height: 40px;
+    padding-right: 20%;
+    
+    
+}
+.hop-tim-kiem input:focus { border-color: #dc2626; }
+.hop-tim-kiem { display: none; }
+
+@media (min-width: 768px) {
+    .hop-tim-kiem { display: block; }
+}
+
+/* Nút giỏ hàng */
+.nut-gio-hang {
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #374151;
+    padding-left: 50px;
+}
+
+.nut-gio-hang:hover { color: #dc2626; }
+
+#cart-count {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background-color: #facc15; /* Màu vàng */
+    color: #b91c1c; /* Màu chữ đỏ */
+    font-size: 10px;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-weight: bold;
+    border: 1px solid white;
+}
+
+/* --- 5. BANNER QUẢNG CÁO (HERO) --- */
+.khu-vuc-banner {
+    position: relative;
+    height: 450px;
+    background-color: #111827;
+    display: flex;
+    align-items: center;
+    color: white;
+    overflow: hidden;
+}
+
+.nen-banner {
+    position: absolute;
+    inset: 0; /* Tràn đầy khung */
+}
+
+.nen-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5; /* Làm mờ ảnh để nổi chữ */
+}
+
+.noi-dung-banner {
+    border-left: 8px solid #facc15; /* Đường kẻ vàng bên trái */
+    padding-left: 24px;
+}
+
+.noi-dung-banner h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-style: italic;
+    margin-bottom: 8px;
+}
+
+.noi-dung-banner p {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: #e5e7eb;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+}
+
+@media (min-width: 768px) {
+    .noi-dung-banner h2 { font-size: 4.5rem; }
+    .noi-dung-banner p { font-size: 1.5rem; }
+}
+
+.nhom-nut-bam { display: flex; gap: 16px; }
+
+.nut {
+    padding: 12px 32px;
+    font-weight: bold;
+    border-radius: 2px;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s;
+}
+
+.nut-do {
+    background-color: #dc2626;
+    color: white;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+}
+.nut-do:hover { background-color: #b91c1c; }
+
+.nut-trang {
+    background-color: white;
+    color: #1e3a8a;
+}
+.nut-trang:hover { background-color: #f3f4f6; }
+
+/* --- 6. KHU VỰC DỊCH VỤ --- */
+.khu-vuc-dich-vu {
+    background-color: white;
+    padding: 32px 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.luoi-3-cot {
+    display: grid;
+    grid-template-columns: 1fr; /* Điện thoại: 1 cột */
+    gap: 32px;
+}
+
+@media (min-width: 768px) {
+    .luoi-3-cot { grid-template-columns: repeat(3, 1fr); } /* PC: 3 cột */
+}
+
+.o-dich-vu {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .o-dich-vu { justify-content: flex-start; }
+    /* Đường kẻ ngăn cách giữa các dịch vụ trên PC */
+    .co-vien-doc {
+        border-left: 1px solid #e5e7eb;
+        border-right: 1px solid #e5e7eb;
+        padding: 0 16px;
+    }
+}
+
+.o-dich-vu i {
+    color: #dc2626;
+    font-size: 30px;
+}
+
+.o-dich-vu h4 { font-weight: bold; }
+.o-dich-vu p { font-size: 14px; color: #6b7280; }
+
+/* --- 7. NỘI DUNG CHÍNH --- */
+.cach-le-tren-duoi { padding-top: 64px; padding-bottom: 64px; }
+
+.tieu-de-muc {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.tieu-de-muc h3 {
+    font-size: 1.875rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-style: italic;
+    color: #1f2937;
+}
+
+.thanh-gach-chan {
+    height: 4px;
+    width: 80px;
+    background-color: #dc2626;
+    margin-top: 8px;
+}
+
+.xem-tat-ca { color: #1d4ed8; font-weight: bold; }
+.xem-tat-ca:hover { text-decoration: underline; }
+
+.luoi-san-pham {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 cột trên điện thoại */
+    gap: 24px;
+}
+
+@media (min-width: 768px) {
+    .luoi-san-pham { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1024px) {
+    .luoi-san-pham { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* --- 8. CHÂN TRANG (FOOTER) --- */
+.chan-trang {
+    background-color: #0f172a; /* Màu nền tối */
+    color: white;
+    padding-top: 64px;
+    padding-bottom: 32px;
+}
+
+.luoi-4-cot {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+}
+
+@media (min-width: 768px) {
+    .luoi-4-cot { grid-template-columns: repeat(4, 1fr); }
+}
+
+.tieu-de-brand-footer {
+    font-size: 1.5rem;
+    font-weight: 900;
+    font-style: italic;
+    color: #ef4444;
+    margin-bottom: 24px;
+}
+
+.cot-chan-trang p, .cot-chan-trang li {
+    font-size: 14px;
+    color: #9ca3af;
+    margin-bottom: 12px;
+}
+
+.cot-chan-trang h4 {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #374151;
+    padding-bottom: 8px;
+    padding-left: 20px;
+    
+}
+
+.cot-chan-trang li:hover { color: #ef4444; cursor: pointer; }
+.cot-chan-trang i { color: #ef4444; margin-right: 8px; }
+
+.lien-ket-mxh { display: flex; gap: 16px; margin-bottom: 24px;  padding-left: 50px;}
+.lien-ket-mxh a {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+}
+
+.dang-ky-tin {
+    background-color: #1f2937;
+    padding: 16px;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+.nhom-nhap-lieu { display: flex; margin-top: 8px; }
+.nhom-nhap-lieu input {
+    background-color: #374151;
+    border: none;
+    padding: 8px;
+    width: 100%;
+    color: white;
+    outline: none;
+}
+.nhom-nhap-lieu button {
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    padding: 0 12px;
+    cursor: pointer;
+}
+.nhom-nhap-lieu button:hover { background-color: #b91c1c; }
+
+.ban-quyen {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid #1f2937;
+    text-align: center;
+    font-size: 12px;
+    color: #6b7280;
+}
