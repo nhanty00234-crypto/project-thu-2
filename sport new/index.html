@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Sports | Premium Gear</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header-container">
+            <a href="#" class="logo">APEX<span>SPORTS</span></a>
+            
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#" class="nav-link">Home</a></li>
+                    
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="nav-link">Shoes <i class="fas fa-chevron-down arrow-icon"></i></a>
+                        <div class="mega-menu">
+                            <div class="container mega-content">
+                                <div class="mega-column">
+                                    <h4>Running</h4>
+                                    <ul>
+                                        <li><a href="#">Road Running</a></li>
+                                        <li><a href="#">Trail Running</a></li>
+                                        <li><a href="#">Track & Spikes</a></li>
+                                        <li><a href="#">Recovery Slides</a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-column">
+                                    <h4>Training</h4>
+                                    <ul>
+                                        <li><a href="#">Gym & HIIT</a></li>
+                                        <li><a href="#">Weightlifting</a></li>
+                                        <li><a href="#">Cross Training</a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-column">
+                                    <h4>Lifestyle</h4>
+                                    <ul>
+                                        <li><a href="#">Sneakers</a></li>
+                                        <li><a href="#">Sandals</a></li>
+                                        <li><a href="#">Boots</a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-column promo-column">
+                                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="New Arrival">
+                                    <span>New Arrivals</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="nav-link">Clothing <i class="fas fa-chevron-down arrow-icon"></i></a>
+                        <div class="mega-menu">
+                            <div class="container mega-content">
+                                <div class="mega-column">
+                                    <h4>Men's</h4>
+                                    <ul>
+                                        <li><a href="#">T-Shirts & Tops</a></li>
+                                        <li><a href="#">Shorts</a></li>
+                                        <li><a href="#">Hoodies & Sweatshirts</a></li>
+                                        <li><a href="#">Jackets</a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-column">
+                                    <h4>Women's</h4>
+                                    <ul>
+                                        <li><a href="#">Sports Bras</a></li>
+                                        <li><a href="#">Leggings</a></li>
+                                        <li><a href="#">Tops</a></li>
+                                        <li><a href="#">Skirts & Dresses</a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-column">
+                                    <h4>Accessories</h4>
+                                    <ul>
+                                        <li><a href="#">Socks</a></li>
+                                        <li><a href="#">Hats & Headbands</a></li>
+                                        <li><a href="#">Gloves</a></li>
+                                    </ul>
+                                </div>
+                                <div class="mega-column promo-column">
+                                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="Collection">
+                                    <span>Summer Collection</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li><a href="#" class="nav-link">Sale</a></li>
+                </ul>
+            </nav>
+
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search products...">
+                <button id="searchBtn"><i class="fas fa-search"></i></button>
+            </div>
+            
+            <div class="header-actions">
+                <div id="authButtons" class="auth-buttons">
+                    <button id="openLoginBtn" class="btn btn-outline-sm">Login</button>
+                    <button id="openRegisterBtn" class="btn btn-primary-sm">Register</button>
+                </div>
+
+                <div id="userInfo" class="user-info hidden">
+                    <span>Hello, <span id="usernameDisplay" class="user-name">User</span></span>
+                    <button id="logoutBtn" class="logout-link">Logout</button>
+                </div>
+
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Push Your Limits</h1>
+            <p>High-performance gear for every athlete.</p>
+            <button class="btn btn-primary">Shop Now</button>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="section-header">
+            <h2 id="results-title">Featured Products</h2>
+            <p id="results-count" class="text-muted">Showing all products</p>
+        </div>
+
+        <div id="productGrid" class="product-grid">
+            </div>
+    </main>
+
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" data-target="productModal">&times;</span>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="modalImg" src="" alt="Product Detail">
+                </div>
+                <div class="modal-info">
+                    <span class="modal-category" id="modalCategory">Category</span>
+                    <h2 id="modalTitle">Product Name</h2>
+                    <p class="modal-price" id="modalPrice">$0.00</p>
+                    <p class="modal-desc" id="modalDesc">Description goes here.</p>
+                    
+                    <div class="modal-actions">
+                        <select id="modalSize">
+                            <option>Select Size</option>
+                            <option>Small</option>
+                            <option>Medium</option>
+                            <option>Large</option>
+                        </select>
+                        <button id="modalAddToCartBtn" class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content auth-modal-content">
+            <span class="close-modal" data-target="loginModal">&times;</span>
+            <div class="auth-header">
+                <h2>Welcome Back</h2>
+                <p>Login to access your account</p>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+                <div id="loginError" class="error-msg"></div>
+                <button type="submit" class="btn btn-primary btn-full">Login</button>
+            </form>
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="#" id="switchToRegister">Register here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content auth-modal-content">
+            <span class="close-modal" data-target="registerModal">&times;</span>
+            <div class="auth-header">
+                <h2>Create Account</h2>
+                <p>Join Apex Sports today</p>
+            </div>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="regUsername" placeholder="Choose a username" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="regEmail" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="regPassword" placeholder="Min 6 characters" required>
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="regConfirmPassword" placeholder="Repeat password" required>
+                </div>
+                <div id="registerError" class="error-msg"></div>
+                <button type="submit" class="btn btn-primary btn-full">Register</button>
+            </form>
+            <div class="auth-footer">
+                <p>Already have an account? <a href="#" id="switchToLogin">Login here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-col">
+                <h3>About Apex</h3>
+                <p>We provide top-tier sports equipment for professionals and enthusiasts alike. Quality you can trust.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                    <li><a href="#">Returns</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Apex Sports. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
