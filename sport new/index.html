@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apex Sports | Premium Gear</title>
+    
+    <link rel="icon" href="/imgae/logo.png" type="image/png">
+
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -11,12 +14,13 @@
 
     <header class="header">
         <div class="container header-container">
-            <a href="#" class="logo">APEX<span>SPORTS</span></a>
+            <a href="#" class="logo">
+                <img src="/imgae/logo.png" alt="Apex Sports Logo">
+            </a>
             
             <nav class="nav">
                 <ul class="nav-list">
                     <li><a href="#" class="nav-link">Home</a></li>
-                    
                     <li class="nav-item has-dropdown">
                         <a href="#" class="nav-link">Shoes <i class="fas fa-chevron-down arrow-icon"></i></a>
                         <div class="mega-menu">
@@ -53,7 +57,6 @@
                             </div>
                         </div>
                     </li>
-
                     <li class="nav-item has-dropdown">
                         <a href="#" class="nav-link">Clothing <i class="fas fa-chevron-down arrow-icon"></i></a>
                         <div class="mega-menu">
@@ -91,7 +94,6 @@
                             </div>
                         </div>
                     </li>
-
                     <li><a href="#" class="nav-link">Sale</a></li>
                 </ul>
             </nav>
@@ -106,12 +108,10 @@
                     <button id="openLoginBtn" class="btn btn-outline-sm">Login</button>
                     <button id="openRegisterBtn" class="btn btn-primary-sm">Register</button>
                 </div>
-
                 <div id="userInfo" class="user-info hidden">
                     <span>Hello, <span id="usernameDisplay" class="user-name">User</span></span>
                     <button id="logoutBtn" class="logout-link">Logout</button>
                 </div>
-
                 <div class="cart-icon">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-count">0</span>
@@ -120,11 +120,38 @@
         </div>
     </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Push Your Limits</h1>
-            <p>High-performance gear for every athlete.</p>
-            <button class="btn btn-primary">Shop Now</button>
+    <section class="hero-slider">
+        <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1517649763962-0c623066013b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
+            <div class="container slide-content">
+                <span class="slide-tag">New Collection</span>
+                <h1>UNLEASH SPEED</h1>
+                <a href="#" class="btn btn-primary slide-btn">Shop Running</a>
+            </div>
+        </div>
+
+        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
+            <div class="container slide-content">
+                <span class="slide-tag">Pro Training</span>
+                <h1>POWER THROUGH</h1>
+                <a href="#" class="btn btn-primary slide-btn">Shop Gym Gear</a>
+            </div>
+        </div>
+
+        <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1556906781-9a412961c28c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
+            <div class="container slide-content">
+                <span class="slide-tag">Urban Style</span>
+                <h1>STREET READY</h1>
+                <a href="#" class="btn btn-primary slide-btn">Shop Lifestyle</a>
+            </div>
+        </div>
+
+        <button class="slider-arrow prev" id="prevSlide"><i class="fas fa-chevron-left"></i></button>
+        <button class="slider-arrow next" id="nextSlide"><i class="fas fa-chevron-right"></i></button>
+        
+        <div class="slider-dots">
+            <span class="dot active" data-slide="0"></span>
+            <span class="dot" data-slide="1"></span>
+            <span class="dot" data-slide="2"></span>
         </div>
     </section>
 
@@ -133,9 +160,7 @@
             <h2 id="results-title">Featured Products</h2>
             <p id="results-count" class="text-muted">Showing all products</p>
         </div>
-
-        <div id="productGrid" class="product-grid">
-            </div>
+        <div id="productGrid" class="product-grid"></div>
     </main>
 
     <div id="productModal" class="modal">
@@ -150,7 +175,6 @@
                     <h2 id="modalTitle">Product Name</h2>
                     <p class="modal-price" id="modalPrice">$0.00</p>
                     <p class="modal-desc" id="modalDesc">Description goes here.</p>
-                    
                     <div class="modal-actions">
                         <select id="modalSize">
                             <option>Select Size</option>
@@ -247,7 +271,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 Apex Sports. All rights reserved.</p>
+            <p>&copy; 2026 Apex Sports. All rights reserved.</p>
         </div>
     </footer>
 
