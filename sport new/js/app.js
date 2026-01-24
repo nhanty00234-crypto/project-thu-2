@@ -1,333 +1,337 @@
-// Wait for DOM to load
+// Đợi DOM tải xong
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- ELEMENT SELECTORS ---
-    const productGrid = document.getElementById('productGrid');
-    const searchInput = document.getElementById('searchInput');
-    const searchBtn = document.getElementById('searchBtn');
-    const resultsTitle = document.getElementById('results-title');
-    const resultsCount = document.getElementById('results-count');
+    // --- KHAI BÁO CÁC PHẦN TỬ (SELECTORS) ---
     
-    const authButtons = document.getElementById('authButtons');
-    const userInfo = document.getElementById('userInfo');
-    const usernameDisplay = document.getElementById('usernameDisplay');
-    const logoutBtn = document.getElementById('logoutBtn');
+    // Lưới sản phẩm & Tìm kiếm
+    const luoiSanPham = document.getElementById('luoi-san-pham');
+    const oTimKiem = document.getElementById('o-tim-kiem');
+    const nutTimKiem = document.getElementById('nut-tim-kiem');
+    const tieuDeKetQua = document.getElementById('tieu-de-ket-qua');
+    const soLuongKetQua = document.getElementById('so-luong-ket-qua');
     
-    const openLoginBtn = document.getElementById('openLoginBtn');
-    const openRegisterBtn = document.getElementById('openRegisterBtn');
-    const switchToRegister = document.getElementById('switchToRegister');
-    const switchToLogin = document.getElementById('switchToLogin');
+    // Phần xác thực (Auth)
+    const khuVucNutXacThuc = document.getElementById('cac-nut-xac-thuc');
+    const thongTinNguoiDung = document.getElementById('thong-tin-user');
+    const hienThiTenNguoiDung = document.getElementById('hien-thi-ten-user');
+    const nutDangXuat = document.getElementById('nut-dang-xuat');
     
-    const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
-    const loginError = document.getElementById('loginError');
-    const registerError = document.getElementById('registerError');
+    // Nút mở hộp thoại (Modal)
+    const nutMoDangNhap = document.getElementById('nut-mo-dang-nhap');
+    const nutMoDangKy = document.getElementById('nut-mo-dang-ky');
+    const chuyenSangDangKy = document.getElementById('chuyen-sang-dang-ky');
+    const chuyenSangDangNhap = document.getElementById('chuyen-sang-dang-nhap');
+    
+    // Biểu mẫu (Forms)
+    const formDangNhap = document.getElementById('form-dang-nhap');
+    const formDangKy = document.getElementById('form-dang-ky');
+    const loiDangNhap = document.getElementById('loi-dang-nhap');
+    const loiDangKy = document.getElementById('loi-dang-ky');
 
-    const productModal = document.getElementById('productModal');
-    const modalImg = document.getElementById('modalImg');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalCategory = document.getElementById('modalCategory');
-    const modalPrice = document.getElementById('modalPrice');
-    const modalDesc = document.getElementById('modalDesc');
-    const modalAddToCartBtn = document.getElementById('modalAddToCartBtn');
+    // Hộp thoại sản phẩm (Product Modal)
+    const hopThoaiSanPham = document.getElementById('hop-thoai-san-pham');
+    const anhModal = document.getElementById('anh-modal');
+    const tieuDeModal = document.getElementById('tieu-de-modal');
+    const danhMucModal = document.getElementById('danh-muc-modal');
+    const giaModal = document.getElementById('gia-modal');
+    const moTaModal = document.getElementById('mo-ta-modal');
+    const nutThemGioHangModal = document.getElementById('nut-them-gio-hang-modal');
 
-    // --- HERO SLIDER LOGIC (NEW) ---
-    function initHeroSlider() {
-        const slides = document.querySelectorAll('.hero-slide');
-        const prevBtn = document.getElementById('prevSlide');
-        const nextBtn = document.getElementById('nextSlide');
-        const dots = document.querySelectorAll('.dot');
+    // --- LOGIC BANNER TRÌNH CHIẾU (SLIDER) ---
+    function khoiTaoBanner() {
+        const cacSlide = document.querySelectorAll('.tam-slide');
+        const nutTruoc = document.getElementById('slide-truoc');
+        const nutSau = document.getElementById('slide-sau');
+        const cacCham = document.querySelectorAll('.cham');
         
-        let currentSlide = 0;
-        const totalSlides = slides.length;
-        let slideInterval;
+        let slideHienTai = 0;
+        const tongSoSlide = cacSlide.length;
+        let thoiGianChuyenSlide;
 
-        // Function to update slide classes
-        function showSlide(index) {
-            // Validate index bounds
-            if (index >= totalSlides) currentSlide = 0;
-            else if (index < 0) currentSlide = totalSlides - 1;
-            else currentSlide = index;
+        // Hàm hiển thị slide
+        function hienThiSlide(chiSo) {
+            if (chiSo >= tongSoSlide) slideHienTai = 0;
+            else if (chiSo < 0) slideHienTai = tongSoSlide - 1;
+            else slideHienTai = chiSo;
 
-            // Update Slides
-            slides.forEach(slide => slide.classList.remove('active'));
-            slides[currentSlide].classList.add('active');
+            // Cập nhật Slide
+            cacSlide.forEach(slide => slide.classList.remove('kich-hoat'));
+            cacSlide[slideHienTai].classList.add('kich-hoat');
 
-            // Update Dots
-            dots.forEach(dot => dot.classList.remove('active'));
-            dots[currentSlide].classList.add('active');
+            // Cập nhật Chấm
+            cacCham.forEach(cham => cham.classList.remove('kich-hoat'));
+            cacCham[slideHienTai].classList.add('kich-hoat');
         }
 
-        // Auto Play
-        function startSlideShow() {
-            slideInterval = setInterval(() => {
-                showSlide(currentSlide + 1);
-            }, 5000); // Change every 5 seconds
+        // Tự động chạy
+        function batDauTrinhChieu() {
+            thoiGianChuyenSlide = setInterval(() => {
+                hienThiSlide(slideHienTai + 1);
+            }, 5000); // Chuyển mỗi 5 giây
         }
 
-        function stopSlideShow() {
-            clearInterval(slideInterval);
+        function dungTrinhChieu() {
+            clearInterval(thoiGianChuyenSlide);
         }
 
-        // Event Listeners
-        nextBtn.addEventListener('click', () => {
-            stopSlideShow();
-            showSlide(currentSlide + 1);
-            startSlideShow();
+        // Sự kiện nút bấm
+        nutSau.addEventListener('click', () => {
+            dungTrinhChieu();
+            hienThiSlide(slideHienTai + 1);
+            batDauTrinhChieu();
         });
 
-        prevBtn.addEventListener('click', () => {
-            stopSlideShow();
-            showSlide(currentSlide - 1);
-            startSlideShow();
+        nutTruoc.addEventListener('click', () => {
+            dungTrinhChieu();
+            hienThiSlide(slideHienTai - 1);
+            batDauTrinhChieu();
         });
 
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                stopSlideShow();
-                showSlide(index);
-                startSlideShow();
+        cacCham.forEach((cham, chiSo) => {
+            cham.addEventListener('click', () => {
+                dungTrinhChieu();
+                hienThiSlide(chiSo);
+                batDauTrinhChieu();
             });
         });
 
-        // Initialize
-        startSlideShow();
+        // Khởi chạy
+        batDauTrinhChieu();
     }
 
-    // Call Slider Init if slider exists
-    if(document.querySelector('.hero-slider')) {
-        initHeroSlider();
+    // Chỉ khởi tạo nếu slider tồn tại
+    if(document.querySelector('.banner-trinh-chieu')) {
+        khoiTaoBanner();
     }
 
+    // --- LOGIC XÁC THỰC (AUTH) ---
 
-    // --- AUTHENTICATION LOGIC ---
+    const KHOA_NGUOI_DUNG = 'apex_users_vn';
+    const KHOA_NGUOI_DUNG_HIEN_TAI = 'apex_current_user_vn';
 
-    const USERS_KEY = 'apex_users';
-    const CURRENT_USER_KEY = 'apex_current_user';
-
-    function getStoredUsers() {
-        const users = localStorage.getItem(USERS_KEY);
+    function layDanhSachNguoiDung() {
+        const users = localStorage.getItem(KHOA_NGUOI_DUNG);
         return users ? JSON.parse(users) : [];
     }
 
-    function saveUser(user) {
-        const users = getStoredUsers();
+    function luuNguoiDung(user) {
+        const users = layDanhSachNguoiDung();
         users.push(user);
-        localStorage.setItem(USERS_KEY, JSON.stringify(users));
+        localStorage.setItem(KHOA_NGUOI_DUNG, JSON.stringify(users));
     }
 
-    function getCurrentUser() {
-        const user = localStorage.getItem(CURRENT_USER_KEY);
+    function layNguoiDungHienTai() {
+        const user = localStorage.getItem(KHOA_NGUOI_DUNG_HIEN_TAI);
         return user ? JSON.parse(user) : null;
     }
 
-    function setCurrentUser(user) {
+    function datNguoiDungHienTai(user) {
         const sessionUser = { username: user.username, email: user.email };
-        localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(sessionUser));
-        updateAuthUI();
+        localStorage.setItem(KHOA_NGUOI_DUNG_HIEN_TAI, JSON.stringify(sessionUser));
+        capNhatGiaoDienXacThuc();
     }
 
-    function logout() {
-        localStorage.removeItem(CURRENT_USER_KEY);
-        updateAuthUI();
+    function dangXuat() {
+        localStorage.removeItem(KHOA_NGUOI_DUNG_HIEN_TAI);
+        capNhatGiaoDienXacThuc();
         window.location.reload(); 
     }
 
-    function updateAuthUI() {
-        const user = getCurrentUser();
+    function capNhatGiaoDienXacThuc() {
+        const user = layNguoiDungHienTai();
         if (user) {
-            authButtons.classList.add('hidden');
-            userInfo.classList.remove('hidden');
-            usernameDisplay.textContent = user.username;
+            khuVucNutXacThuc.classList.add('an');
+            thongTinNguoiDung.classList.remove('an');
+            hienThiTenNguoiDung.textContent = user.username;
         } else {
-            authButtons.classList.remove('hidden');
-            userInfo.classList.add('hidden');
+            khuVucNutXacThuc.classList.remove('an');
+            thongTinNguoiDung.classList.add('an');
         }
     }
 
-    // --- MODAL LOGIC ---
+    // --- LOGIC HỘP THOẠI (MODAL) ---
 
-    function openModal(modalId) {
-        const modal = document.getElementById(modalId);
+    function moHopThoai(idModal) {
+        const modal = document.getElementById(idModal);
         if (modal) {
-            modal.classList.add('show');
+            modal.classList.add('hien');
             document.body.style.overflow = 'hidden';
-            if(modalId === 'loginModal') { loginError.textContent = ''; loginForm.reset(); }
-            if(modalId === 'registerModal') { registerError.textContent = ''; registerForm.reset(); }
+            if(idModal === 'hop-thoai-dang-nhap') { loiDangNhap.textContent = ''; formDangNhap.reset(); }
+            if(idModal === 'hop-thoai-dang-ky') { loiDangKy.textContent = ''; formDangKy.reset(); }
         }
     }
 
-    function closeModal(modalId) {
-        const modal = document.getElementById(modalId);
+    function dongHopThoai(idModal) {
+        const modal = document.getElementById(idModal);
         if (modal) {
-            modal.classList.remove('show');
+            modal.classList.remove('hien');
             document.body.style.overflow = 'auto';
         }
     }
 
-    document.querySelectorAll('.close-modal').forEach(btn => {
-        btn.addEventListener('click', () => {
-            closeModal(btn.dataset.target);
+    document.querySelectorAll('.dong-hop-thoai').forEach(nut => {
+        nut.addEventListener('click', () => {
+            dongHopThoai(nut.dataset.target);
         });
     });
 
     window.addEventListener('click', (e) => {
-        if (e.target.classList.contains('modal')) {
-            e.target.classList.remove('show');
+        if (e.target.classList.contains('hop-thoai')) {
+            e.target.classList.remove('hien');
             document.body.style.overflow = 'auto';
         }
     });
 
-    // --- FORM HANDLERS ---
+    // --- XỬ LÝ BIỂU MẪU (FORMS) ---
 
-    registerForm.addEventListener('submit', (e) => {
+    formDangKy.addEventListener('submit', (e) => {
         e.preventDefault();
-        const username = document.getElementById('regUsername').value.trim();
-        const email = document.getElementById('regEmail').value.trim();
-        const password = document.getElementById('regPassword').value;
-        const confirmPassword = document.getElementById('regConfirmPassword').value;
+        const username = document.getElementById('ten-dang-ky').value.trim();
+        const email = document.getElementById('email-dang-ky').value.trim();
+        const password = document.getElementById('mat-khau-dang-ky').value;
+        const confirmPassword = document.getElementById('xac-nhan-mat-khau').value;
 
-        if (password.length < 6) { registerError.textContent = "Password must be at least 6 characters."; return; }
-        if (password !== confirmPassword) { registerError.textContent = "Passwords do not match."; return; }
+        if (password.length < 6) { loiDangKy.textContent = "Mật khẩu phải có ít nhất 6 ký tự."; return; }
+        if (password !== confirmPassword) { loiDangKy.textContent = "Mật khẩu không khớp."; return; }
 
-        const users = getStoredUsers();
-        if (users.find(u => u.email === email)) { registerError.textContent = "Email is already registered."; return; }
-        if (users.find(u => u.username === username)) { registerError.textContent = "Username is taken."; return; }
+        const users = layDanhSachNguoiDung();
+        if (users.find(u => u.email === email)) { loiDangKy.textContent = "Email đã được đăng ký."; return; }
+        if (users.find(u => u.username === username)) { loiDangKy.textContent = "Tên đăng nhập đã tồn tại."; return; }
 
         const newUser = { username, email, password }; 
-        saveUser(newUser);
-        setCurrentUser(newUser);
-        closeModal('registerModal');
-        alert("Registration successful! You are now logged in.");
+        luuNguoiDung(newUser);
+        datNguoiDungHienTai(newUser);
+        dongHopThoai('hop-thoai-dang-ky');
+        alert("Đăng ký thành công! Bạn đã được đăng nhập.");
     });
 
-    loginForm.addEventListener('submit', (e) => {
+    formDangNhap.addEventListener('submit', (e) => {
         e.preventDefault();
-        const email = document.getElementById('loginEmail').value.trim();
-        const password = document.getElementById('loginPassword').value;
-        const users = getStoredUsers();
+        const email = document.getElementById('email-dang-nhap').value.trim();
+        const password = document.getElementById('mat-khau-dang-nhap').value;
+        const users = layDanhSachNguoiDung();
         const validUser = users.find(u => (u.email === email || u.username === email) && u.password === password);
 
         if (validUser) {
-            setCurrentUser(validUser);
-            closeModal('loginModal');
+            datNguoiDungHienTai(validUser);
+            dongHopThoai('hop-thoai-dang-nhap');
         } else {
-            loginError.textContent = "Invalid email or password.";
+            loiDangNhap.textContent = "Email hoặc mật khẩu không đúng.";
         }
     });
 
-    logoutBtn.addEventListener('click', logout);
-    openLoginBtn.addEventListener('click', () => openModal('loginModal'));
-    openRegisterBtn.addEventListener('click', () => openModal('registerModal'));
+    nutDangXuat.addEventListener('click', dangXuat);
+    nutMoDangNhap.addEventListener('click', () => moHopThoai('hop-thoai-dang-nhap'));
+    nutMoDangKy.addEventListener('click', () => moHopThoai('hop-thoai-dang-ky'));
     
-    switchToRegister.addEventListener('click', (e) => {
-        e.preventDefault(); closeModal('loginModal'); openModal('registerModal');
+    chuyenSangDangKy.addEventListener('click', (e) => {
+        e.preventDefault(); dongHopThoai('hop-thoai-dang-nhap'); moHopThoai('hop-thoai-dang-ky');
     });
 
-    switchToLogin.addEventListener('click', (e) => {
-        e.preventDefault(); closeModal('registerModal'); openModal('loginModal');
+    chuyenSangDangNhap.addEventListener('click', (e) => {
+        e.preventDefault(); dongHopThoai('hop-thoai-dang-ky'); moHopThoai('hop-thoai-dang-nhap');
     });
 
-    // --- PRODUCT LOGIC ---
+    // --- LOGIC SẢN PHẨM ---
 
-    function renderProducts(productsToRender, searchTerm = '') {
-        productGrid.innerHTML = ''; 
-        if (productsToRender.length === 0) {
-            productGrid.innerHTML = `
+    function hienThiSanPham(danhSach, tuKhoa = '') {
+        luoiSanPham.innerHTML = ''; 
+        if (danhSach.length === 0) {
+            luoiSanPham.innerHTML = `
                 <div style="grid-column: 1/-1; text-align: center; padding: 40px;">
-                    <h3>No products found</h3>
-                    <p>Try adjusting your search terms.</p>
+                    <h3>Không tìm thấy sản phẩm</h3>
+                    <p>Hãy thử từ khóa khác.</p>
                 </div>
             `;
-            resultsCount.textContent = '0 products found';
+            soLuongKetQua.textContent = '0 sản phẩm được tìm thấy';
             return;
         }
 
-        resultsCount.textContent = `Showing ${productsToRender.length} product${productsToRender.length !== 1 ? 's' : ''}`;
+        soLuongKetQua.textContent = `Hiển thị ${danhSach.length} sản phẩm`;
 
-        productsToRender.forEach(product => {
-            const card = document.createElement('div');
-            card.classList.add('product-card');
-            const highlightedName = highlightText(product.name, searchTerm);
-            card.innerHTML = `
-                <div class="card-img-container">
-                    <img src="${product.image}" alt="${product.name}">
+        danhSach.forEach(sanPham => {
+            const the = document.createElement('div');
+            the.classList.add('the-san-pham');
+            const tenNoibat = toDamTuKhoa(sanPham.name, tuKhoa);
+            the.innerHTML = `
+                <div class="khung-anh-the">
+                    <img src="${sanPham.image}" alt="${sanPham.name}">
                 </div>
-                <div class="card-body">
-                    <span class="card-category">${product.category}</span>
-                    <h3 class="card-title">${highlightedName}</h3>
-                    <p class="card-desc">${product.description}</p>
-                    <div class="card-footer">
-                        <span class="price">$${product.price.toFixed(2)}</span>
-                        <div class="btn-group">
-                            <button class="btn btn-outline view-details-btn" data-id="${product.id}">View</button>
-                            <button class="btn btn-primary add-cart-btn" data-id="${product.id}"><i class="fas fa-cart-plus"></i></button>
+                <div class="than-the">
+                    <span class="danh-muc-the">${sanPham.category}</span>
+                    <h3 class="tieu-de-the">${tenNoibat}</h3>
+                    <p class="mo-ta-the">${sanPham.description}</p>
+                    <div class="chan-the">
+                        <span class="gia">$${sanPham.price.toFixed(2)}</span>
+                        <div class="nhom-nut">
+                            <button class="nut nut-vien-nho nut-xem-chi-tiet" data-id="${sanPham.id}">Xem</button>
+                            <button class="nut nut-chinh-nho nut-them-gio" data-id="${sanPham.id}"><i class="fas fa-cart-plus"></i></button>
                         </div>
                     </div>
                 </div>
             `;
-            productGrid.appendChild(card);
+            luoiSanPham.appendChild(the);
         });
 
-        document.querySelectorAll('.view-details-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => openProductModal(parseInt(e.target.dataset.id)));
+        document.querySelectorAll('.nut-xem-chi-tiet').forEach(nut => {
+            nut.addEventListener('click', (e) => moModalSanPham(parseInt(e.target.dataset.id)));
         });
 
-        document.querySelectorAll('.add-cart-btn').forEach(btn => {
-            btn.addEventListener('click', () => handleAddToCart());
+        document.querySelectorAll('.nut-them-gio').forEach(nut => {
+            nut.addEventListener('click', () => xuLyThemGioHang());
         });
     }
 
-    function highlightText(text, term) {
-        if (!term) return text;
-        const regex = new RegExp(`(${term})`, 'gi');
-        return text.replace(regex, '<span class="highlight">$1</span>');
+    function toDamTuKhoa(vanBan, tuKhoa) {
+        if (!tuKhoa) return vanBan;
+        const regex = new RegExp(`(${tuKhoa})`, 'gi');
+        return vanBan.replace(regex, '<span class="noi-bat">$1</span>');
     }
 
-    function performSearch() {
-        const query = searchInput.value.toLowerCase().trim();
-        if (query === '') {
-            resultsTitle.textContent = "Featured Products";
-            renderProducts(products); 
+    function thucHienTimKiem() {
+        const tuKhoa = oTimKiem.value.toLowerCase().trim();
+        if (tuKhoa === '') {
+            tieuDeKetQua.textContent = "Sản phẩm nổi bật";
+            hienThiSanPham(danhSachSanPham); 
             return;
         }
-        resultsTitle.textContent = `Search Results for "${query}"`;
-        const filtered = products.filter(product => {
-            return product.name.toLowerCase().includes(query) || 
-                   product.description.toLowerCase().includes(query) ||
-                   product.category.toLowerCase().includes(query);
+        tieuDeKetQua.textContent = `Kết quả tìm kiếm cho "${tuKhoa}"`;
+        const ketQuaLoc = danhSachSanPham.filter(sp => {
+            return sp.name.toLowerCase().includes(tuKhoa) || 
+                   sp.description.toLowerCase().includes(tuKhoa) ||
+                   sp.category.toLowerCase().includes(tuKhoa);
         });
-        renderProducts(filtered, query);
+        hienThiSanPham(ketQuaLoc, tuKhoa);
     }
 
-    function openProductModal(productId) {
-        const product = products.find(p => p.id === productId);
-        if (!product) return;
-        modalImg.src = product.image;
-        modalTitle.textContent = product.name;
-        modalCategory.textContent = product.category;
-        modalPrice.textContent = `$${product.price.toFixed(2)}`;
-        modalDesc.textContent = product.description;
-        openModal('productModal');
+    function moModalSanPham(idSanPham) {
+        const sanPham = danhSachSanPham.find(p => p.id === idSanPham);
+        if (!sanPham) return;
+        anhModal.src = sanPham.image;
+        tieuDeModal.textContent = sanPham.name;
+        danhMucModal.textContent = sanPham.category;
+        giaModal.textContent = `$${sanPham.price.toFixed(2)}`;
+        moTaModal.textContent = sanPham.description;
+        moHopThoai('hop-thoai-san-pham');
     }
 
-    function handleAddToCart() {
-        const user = getCurrentUser();
+    function xuLyThemGioHang() {
+        const user = layNguoiDungHienTai();
         if (!user) {
-            alert("Please login to add products to cart.");
-            openModal('loginModal');
+            alert("Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng.");
+            moHopThoai('hop-thoai-dang-nhap');
         } else {
-            let count = document.querySelector('.cart-count');
-            let currentVal = parseInt(count.textContent);
-            count.textContent = currentVal + 1;
-            alert("Product added to cart!");
+            let dem = document.querySelector('.so-luong-gio-hang');
+            let giaTriHienTai = parseInt(dem.textContent);
+            dem.textContent = giaTriHienTai + 1;
+            alert("Đã thêm sản phẩm vào giỏ hàng!");
         }
     }
 
-    searchInput.addEventListener('input', performSearch);
-    searchBtn.addEventListener('click', performSearch);
-    modalAddToCartBtn.addEventListener('click', handleAddToCart);
+    oTimKiem.addEventListener('input', thucHienTimKiem);
+    nutTimKiem.addEventListener('click', thucHienTimKiem);
+    nutThemGioHangModal.addEventListener('click', xuLyThemGioHang);
 
-    updateAuthUI();
-    renderProducts(products);
+    capNhatGiaoDienXacThuc();
+    hienThiSanPham(danhSachSanPham);
 });
