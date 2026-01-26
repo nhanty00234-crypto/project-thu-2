@@ -75,6 +75,13 @@ img { max-width: 100%; display: block; }
 }
 .nut-vien-nho:hover { background: var(--primary); color: white; }
 .nut-toan-bo { width: 100%; margin-top: 10px; }
+.nut-slide { 
+    padding: 14px 35px;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+}
 
 /* --- Tiện ích Khác --- */
 .an { display: none !important; }
@@ -328,14 +335,6 @@ img { max-width: 100%; display: block; }
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
-.nut-slide {
-    padding: 14px 35px;
-    font-size: 1rem;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
-}
-
 /* Điều khiển Slider */
 .mui-ten-slider {
     position: absolute;
@@ -381,19 +380,35 @@ img { max-width: 100%; display: block; }
     transform: scale(1.2);
 }
 
-/* --- Lưới Sản Phẩm --- */
-.tieu-de-phan { margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; }
+/* -- Hiệu ứng Animation cho Sản phẩm -- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 .luoi-san-pham { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 30px; margin-bottom: 60px; }
 
 .the-san-pham {
     background: var(--white); border-radius: var(--bo-goc);
     box-shadow: var(--bong); overflow: hidden;
     transition: var(--chuyen-dong); display: flex; flex-direction: column;
+    /* Kích hoạt Animation */
+    animation: fadeIn 0.4s ease-out forwards;
 }
 .the-san-pham:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+
 .khung-anh-the { height: 220px; overflow: hidden; background: #f1f1f1; }
 .khung-anh-the img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
 .the-san-pham:hover img { transform: scale(1.05); }
+
+/* Link ảnh (mới) */
+.xem-chi-tiet-anh {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
 .than-the { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
 .danh-muc-the { font-size: 0.75rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; }
 .tieu-de-the { font-size: 1.1rem; font-weight: 700; margin-bottom: 5px; }
@@ -401,9 +416,57 @@ img { max-width: 100%; display: block; }
     font-size: 0.9rem; color: var(--gray); margin-bottom: 15px;
     display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
+
+/* Style cho Size Badge (mới) */
+.lua-chon-size {
+    display: flex;
+    gap: 5px;
+    margin: 8px 0 12px 0;
+    flex-wrap: wrap;
+}
+
+.size-badge {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    color: var(--gray);
+    background-color: #f8fafc;
+    cursor: default;
+    transition: all 0.2s;
+}
+.size-badge:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: #fff;
+}
+
 .chan-the { margin-top: auto; display: flex; justify-content: space-between; align-items: center; }
 .gia { font-size: 1.2rem; font-weight: 700; color: var(--primary); }
 .noi-bat { background-color: yellow; font-weight: bold; }
+
+/* --- Menu User Dropdown --- */
+.menu-user-dropdown {
+    display: flex;
+    gap: 10px;
+    margin-left: 10px;
+}
+
+.menu-user-dropdown a {
+    color: var(--gray);
+    font-size: 1.1rem;
+    transition: 0.2s;
+}
+
+.menu-user-dropdown a:hover {
+    color: var(--primary);
+}
+
+.lien-ket-dam {
+    font-weight: bold;
+    color: var(--primary);
+    text-decoration: none;
+}
 
 /* --- Hộp Thoại (Modals) --- */
 .hop-thoai {
