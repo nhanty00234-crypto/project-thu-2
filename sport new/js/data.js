@@ -1,66 +1,256 @@
-const products = [
+const danhSachSanPham = [
     {
         id: 1,
-        name: "Zoom Runners Pro",
-        category: "Shoes",
-        price: 129.99,
-        image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-        description: "Engineered for speed, the Zoom Runners Pro features lightweight mesh and responsive cushioning to propel you forward with every stride."
+        name: "Giày đá bóng cỏ tự nhiên Nike Air Zoom Mercurial Superfly 10 Academy MG Max Voltage - Limelight/Volt/Hyper Crimson FQ1456-300",
+        category: "Giày", 
+        price: 2350000,
+        sizes: [39, 40, 41, 42, 43],
+        image: "/imgae/NIKE AIR ZOOM/1.jpg",
+        // ▼▼▼ BẠN ĐIỀN ẢNH RIÊNG CHO SẢN PHẨM NÀY Ở ĐÂY ▼▼▼
+        gallery: [
+            "/imgae/NIKE AIR ZOOM/1.jpg", // Ảnh chính
+            "/imgae/NIKE AIR ZOOM/2.jpg",
+            "/imgae/NIKE AIR ZOOM/3.jpg",
+            "/imgae/NIKE AIR ZOOM/4.jpg",
+            "/imgae/NIKE AIR ZOOM/5.jpg",
+            "/imgae/NIKE AIR ZOOM/6.jpg",
+            "/imgae/NIKE AIR ZOOM/7.jpg",
+            "/imgae/NIKE AIR ZOOM/8.jpg",
+            "/imgae/NIKE AIR ZOOM/9.jpg",
+        ],
+        description: "Dòng giày tốc độ thế hệ mới với đệm Air Zoom êm ái."
     },
     {
         id: 2,
-        name: "Apex Training Tee",
-        category: "Clothing",
-        price: 34.50,
-        image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-        description: "Breathable, sweat-wicking fabric keeps you dry and comfortable during your most intense workouts. Athletic fit."
+        name: "Giày đá bóng cỏ tự nhiên Nike Air Zoom Mercurial Vapor 16 Pro FG Attack - Racer Blue/White FQ8685-446",
+        category: "Giày",
+        price: 5890000,
+        sizes: [40, 41, 42, 43, 44],
+        image: "/imgae/NIKE VAPOR 16 ELITE/NIKE VAPOR 16 ELITE.jpg",
+        gallery: [
+            "/imgae/NIKE VAPOR 16 ELITE/NIKE VAPOR 16 ELITE.jpg",
+            "/imgae/NIKE VAPOR 16 ELITE/2.jpg",
+            "/imgae/NIKE VAPOR 16 ELITE/3.jpg",
+            "/imgae/NIKE VAPOR 16 ELITE/4.jpg",
+            "/imgae/NIKE VAPOR 16 ELITE/5.jpg",
+            "/imgae/NIKE VAPOR 16 ELITE/6.jpg",
+            "/imgae/NIKE VAPOR 16 ELITE/7.jpg",
+            "/imgae/NIKE VAPOR 16 ELITE/8.jpg",
+            "/imgae/NIKE VAPOR 16 ELITE/9.jpg",
+            "/imgae/NIKE VAPOR 16 ELITE/10.jpg",
+        ],
+        description: "Phiên bản Pro cao cấp với công nghệ sợi dệt Flyknit ôm chân."
     },
     {
         id: 3,
-        name: "Trail Blazer Hikers",
-        category: "Shoes",
-        price: 159.00,
-        image: "https://images.unsplash.com/photo-1520639888713-7851133b1ed0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-        description: "Rugged durability meets all-day comfort. Waterproof lining and high-traction soles make these perfect for any terrain."
+        name: "Giày đá bóng cỏ tự nhiên Nike Air Zoom Mercurial Vapor 16 Pro FG Attack - Racer Blue/White FQ8685-446",
+        category: "Giày",
+        price: 2150000,
+        sizes: [40, 41, 42, 43, 44],
+        image: "/imgae/NIKE VAPOR 16 PRO/Nike VAPOR 16 PRO.jpg",
+        gallery: [
+            "/imgae/NIKE VAPOR 16 PRO/Nike VAPOR 16 PRO.jpg",
+           
+        ],
+        description: "Mẫu giày tốc độ được ưa chuộng nhất hiện nay."
     },
     {
         id: 4,
-        name: "Yoga Essentials Mat",
-        category: "Accessories",
-        price: 45.00,
-        image: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-        description: "Extra thick non-slip yoga mat. Eco-friendly materials provide excellent cushioning for joints during practice."
+        name: "Giày đá bóng cỏ tự nhiên Nike Air Zoom Mercurial Vapor 16 Pro FG Scary Good - Magic FlamingoBlackTotal Crimson FQ8685-600",
+        category: "Giày",
+        price: 3690000,
+        sizes: [40, 41, 42, 43, 44],
+        image: "/imgae/Giày đá bóng cỏ tự nhiên Nike Air Zoom Mercurial Vapor 16 Pro FG Scary Good - Magic FlamingoBlackTotal Crimson FQ8685-600/1.jpg",
+        gallery: [
+            "/imgae/Giày đá bóng cỏ tự nhiên Nike Air Zoom Mercurial Vapor 16 Pro FG Scary Good - Magic FlamingoBlackTotal Crimson FQ8685-600/1.jpg",
+            "/imgae/Giày đá bóng cỏ tự nhiên Nike Air Zoom Mercurial Vapor 16 Pro FG Scary Good - Magic FlamingoBlackTotal Crimson FQ8685-600/2.jpg",
+            "/imgae/Giày đá bóng cỏ tự nhiên Nike Air Zoom Mercurial Vapor 16 Pro FG Scary Good - Magic FlamingoBlackTotal Crimson FQ8685-600/3.jpg",
+            "/imgae/Giày đá bóng cỏ tự nhiên Nike Air Zoom Mercurial Vapor 16 Pro FG Scary Good - Magic FlamingoBlackTotal Crimson FQ8685-600/4.jpg",
+            "/imgae/Giày đá bóng cỏ tự nhiên Nike Air Zoom Mercurial Vapor 16 Pro FG Scary Good - Magic FlamingoBlackTotal Crimson FQ8685-600/5.jpg",
+            "/imgae/Giày đá bóng cỏ tự nhiên Nike Air Zoom Mercurial Vapor 16 Pro FG Scary Good - Magic FlamingoBlackTotal Crimson FQ8685-600/6.jpg",
+            "/imgae/Giày đá bóng cỏ tự nhiên Nike Air Zoom Mercurial Vapor 16 Pro FG Scary Good - Magic FlamingoBlackTotal Crimson FQ8685-600/7.jpg",
+            "/imgae/Giày đá bóng cỏ tự nhiên Nike Air Zoom Mercurial Vapor 16 Pro FG Scary Good - Magic FlamingoBlackTotal Crimson FQ8685-600/8.jpg",
+            "/imgae/Giày đá bóng cỏ tự nhiên Nike Air Zoom Mercurial Vapor 16 Pro FG Scary Good - Magic FlamingoBlackTotal Crimson FQ8685-600/9.jpg",
+        ],
+        description: "Phối màu Scary Good cực kỳ nổi bật trên sân cỏ."
     },
     {
         id: 5,
-        name: "Varsity Basketball",
-        category: "Equipment",
-        price: 29.99,
-        image: "https://images.unsplash.com/photo-1519861531473-920026393112?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-        description: "Official size and weight. High-performance composite leather for superior grip and control on indoor or outdoor courts."
+        name: "Áo bóng đá Adidas chính hãng Manchester United Away Shirt 1991 LIMITED EDITION JF0376",
+        category: "Áo",
+        price: 1690000,
+        sizes: ["XS", "S", "M", "L"],
+        image: "/imgae/Áo đá bóng/1.jpg",
+        gallery: [
+            "/imgae/Áo đá bóng/1.jpg",
+            "/imgae/Áo đá bóng/2.jpg",
+            "/imgae/Áo đá bóng/3.jpeg",
+            "/imgae/Áo đá bóng/4.jpeg",
+            "/imgae/Áo đá bóng/5.jpeg",
+        ],
+        description: "Áo đấu phiên bản giới hạn hoài cổ 1991."
     },
     {
         id: 6,
-        name: "Hydra Flask 32oz",
-        category: "Accessories",
-        price: 24.99,
-        image: "https://images.unsplash.com/photo-1602143407151-011141920038?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-        description: "Vacuum insulated stainless steel water bottle. Keeps drinks cold for 24 hours or hot for 12 hours."
+        name: "Áo bóng đá Nike chính hãng Inter Milan sân khách 2024/25 FN8793-123",
+        category: "Áo",
+        price: 1290000,
+        sizes: ["XS", "S", "M", "L"],
+        image: "/imgae/áo đá bóng 2/1.jpg",
+        gallery: [
+            "/imgae/áo đá bóng 2/1.jpg",
+            "/imgae/áo đá bóng 2/2.jpg",
+            "/imgae/áo đá bóng 2/3.png",
+            "/imgae/áo đá bóng 2/4.jpg",
+            "/imgae/áo đá bóng 2/5.jpg",
+            "/imgae/áo đá bóng 2/6.jpg",
+            "/imgae/áo đá bóng 2/7.jpg",
+            "/imgae/áo đá bóng 2/8.jpg",
+            "/imgae/áo đá bóng 2/inter_m_nk_df_jsy_ss_stad_aw__3__01360794137d4e36b8727335942329e1_1024x1024.jpg",
+            
+        ],
+        description: "Chất liệu vải thun lạnh thoáng mát, thấm hút mồ hôi."
     },
     {
         id: 7,
-        name: "Thermal Running Jacket",
-        category: "Clothing",
-        price: 89.99,
-        image: "https://images.unsplash.com/photo-1556906781-9a412961c28c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-        description: "Wind and water-resistant. Features reflective details for visibility during early morning or late night runs."
+        name: "Áo bóng đá Adidas chính hãng Manchester United Sân Nhà 2024/25 Bản Thi Đấu Authentic JF1291",
+        category: "Áo",
+        price: 1990000,
+        sizes: ["XS", "S", "M", "L"],
+        image: "/imgae/áo bóng đá 3/1.jpg",
+        gallery: [
+            "/imgae/áo bóng đá 3/1.jpg",
+            "/imgae/áo bóng đá 3/2.jpeg",
+            "/imgae/áo bóng đá 3/3.jpeg",
+            "/imgae/áo bóng đá 3/4.jpeg",
+            "/imgae/áo bóng đá 3/5.jpeg",
+            "/imgae/áo bóng đá 3/6.jpeg",
+            "/imgae/áo bóng đá 3/7.jpeg",
+            "/imgae/áo bóng đá 3/8.jpeg",
+            
+        ],
+        description: "Bản thi đấu Authentic với công nghệ Heat.RDY cao cấp."
     },
     {
         id: 8,
-        name: "Elite Tennis Racket",
-        category: "Equipment",
-        price: 199.99,
-        image: "https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80",
-        description: "Carbon fiber construction offers a perfect balance of power and control. Pre-strung with premium synthetic gut."
+        name: "Áo tập luyện chính hãng Manchester United 2024/25",
+        category: "Áo",
+        price: 690000,
+        sizes: ["XS", "S", "M", "L"],
+        image: "/imgae/ÁO BÓNG ĐÁ 4/1.jpeg",
+        gallery: [
+            "/imgae/ÁO BÓNG ĐÁ 4/1.jpeg",
+            "/imgae/ÁO BÓNG ĐÁ 4/2.jpg",
+            "/imgae/ÁO BÓNG ĐÁ 4/3.jpg",
+            "/imgae/ÁO BÓNG ĐÁ 4/4.jpg",
+            "/imgae/ÁO BÓNG ĐÁ 4/5.jpg",
+            "/imgae/ÁO BÓNG ĐÁ 4/6.jpg",
+            "/imgae/ÁO BÓNG ĐÁ 4/7.jpg",
+            "/imgae/ÁO BÓNG ĐÁ 4/8.jpg",
+            "/imgae/ÁO BÓNG ĐÁ 4/9.jpg",
+            
+        ],
+        description: "Áo tập luyện chính hãng, nhẹ và bền."
+    },
+    {
+        id: 9,
+        name: "Túi trống NMS 2025",
+        category: "Túi & Balo",
+        price: 249000,
+        sizes: ["XANH DƯƠNG"],
+        image: "/imgae/túi 1/1.jpg",
+        gallery: [
+            "/imgae/túi 1/1.jpg",
+            "/imgae/túi 1/2.jpg",
+            "/imgae/túi 1/3.jpg",
+            "/imgae/túi 1/4.jpg",
+            "/imgae/túi 1/5.jpg",
+            "/imgae/túi 1/6.jpg",
+            "/imgae/túi 1/7.jpg",
+            "/imgae/túi 1/8.jpg",
+            "/imgae/túi 1/9.jpg",
+            "/imgae/túi 1/10.jpg",
+            
+        ],
+        description: "Túi trống thể thao tiện lợi, đựng được nhiều đồ."
+    },
+    {
+        id: 10,
+        name: "TÚI HỘP ĐỰNG GIÀY NEYMARSPORT Q2/2022",
+        category: "Túi & Balo",
+        price: 79000,
+        sizes: ["VÀNG","ĐỎ","XANH LÁ CÂY"],
+        image: "/imgae/túi 2/1.jpg",
+        gallery: [
+            "/imgae/túi 2/1.jpg",
+            "/imgae/túi 2/2.jpg",
+            "/imgae/túi 2/3.jpg",
+            "/imgae/túi 2/4.jpg",
+            "/imgae/túi 2/5.jpg",
+            "/imgae/túi 2/6.jpg",
+            "/imgae/túi 2/7.jpg",
+            "/imgae/túi 2/8.jpg",
+            "/imgae/túi 2/9.jpg",
+            "/imgae/túi 2/10.jpg",
+            "/imgae/túi 2/11.jpg",
+            "/imgae/túi 2/12.jpg",
+            "/imgae/túi 2/13.jpg",
+            "/imgae/túi 2/14.jpg",
+            "/imgae/túi 2/15.jpg",
+            "/imgae/túi 2/16.jpg",
+            "/imgae/túi 2/17.jpg",
+            "/imgae/túi 2/18.jpg",
+            "/imgae/túi 2/19.jpg",
+            "/imgae/túi 2/20.jpg",
+            "/imgae/túi 2/21.jpg",
+            "/imgae/túi 2/22.jpg",
+            "/imgae/túi 2/23.jpg",
+            
+        ],
+        description: "Bảo vệ đôi giày của bạn khỏi bụi bẩn và trầy xước."
+    },
+    {
+        id: 11,
+        name: "Túi Gymsack NEYMARSPORT màu ngẫu nhiên",
+        category: "Túi & Balo",
+        price: 59000,
+        sizes: ["NGẪU NHIÊN"],
+        image: "/imgae/túi 3/1.jpg",
+        gallery: [
+            "/imgae/túi 3/1.jpg",
+            "/imgae/túi 3/2.jpg",
+            "/imgae/túi 3/3.jpg",
+            "/imgae/túi 3/4.jpg",
+            "/imgae/túi 3/5.jpg",
+            "/imgae/túi 3/6.jpg",
+            "/imgae/túi 3/7.jpg",
+            "/imgae/túi 3/8.jpg",
+            "/imgae/túi 3/9.jpg",
+            "/imgae/túi 3/10.jpg",
+            "/imgae/túi 3/12.jpg",
+            "/imgae/túi 3/13.jpg",
+            
+        ],
+        description: "Túi rút dây gọn nhẹ, thích hợp đi đá bóng phủi."
+    },
+    {
+        id: 12,
+        name: "BALO NEYMARSPORT FOOTBALL BACKPACK 2022",
+        category: "Phụ kiện",
+        price: 219000,
+        sizes: ["ĐEN", "XANH DƯƠNG", " ĐỎ", "XÁM", "CAM"],
+        image: "/imgae/túi 5/1.jpg",
+        gallery: [
+            "/imgae/túi 5/1.jpg",
+            "/imgae/túi 5/2.png",
+            "/imgae/túi 5/3.png",
+            "/imgae/túi 5/4.png",
+            "/imgae/túi 5/5.png",
+            "/imgae/túi 5/6.png",
+            "/imgae/túi 5/7.png",
+            "/imgae/túi 5/8.jpg",
+            
+        ],
+        description: "Balo thể thao đa năng, có ngăn đựng giày riêng biệt."
     }
 ];

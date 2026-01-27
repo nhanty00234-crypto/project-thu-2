@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loiDangNhap = document.getElementById('loi-dang-nhap');
     const loiDangKy = document.getElementById('loi-dang-ky');
 
-    // --- 1. LOGIC BANNER TRÌNH CHIẾU (SLIDER) ---
+    // --- 1. LOGIC BANNER TRÌNH CHIẾU ---
     function khoiTaoBanner() {
         const cacSlide = document.querySelectorAll('.tam-slide');
         const nutTruoc = document.getElementById('slide-truoc');
@@ -117,9 +117,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if(khuVucNutXacThuc) khuVucNutXacThuc.classList.add('an');
             if(thongTinNguoiDung) thongTinNguoiDung.classList.remove('an');
             if(hienThiTenNguoiDung) hienThiTenNguoiDung.textContent = user.username;
+            capNhatBadgeGioHang();
         } else {
             if(khuVucNutXacThuc) khuVucNutXacThuc.classList.remove('an');
             if(thongTinNguoiDung) thongTinNguoiDung.classList.add('an');
+            const badge = document.querySelector('.so-luong-gio-hang');
+            if(badge) badge.textContent = '0';
         }
     }
 
@@ -198,9 +201,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if(nutMoDangNhap) nutMoDangNhap.addEventListener('click', () => moHopThoai('hop-thoai-dang-nhap'));
     if(nutMoDangKy) nutMoDangKy.addEventListener('click', () => moHopThoai('hop-thoai-dang-ky'));
 
-    // --- 5. LOGIC HIỂN THỊ & LỌC SẢN PHẨM (QUAN TRỌNG) ---
+    // --- 5. LOGIC HIỂN THỊ SẢN PHẨM & GIỎ HÀNG ---
 
-    // Hàm render sản phẩm ra HTML
     function hienThiSanPham(danhSach, tuKhoa = '') {
         if (!luoiSanPham) return;
         
@@ -222,21 +224,15 @@ document.addEventListener('DOMContentLoaded', () => {
         danhSach.forEach(sanPham => {
             const the = document.createElement('div');
             the.classList.add('the-san-pham');
-            
-            // Format giá tiền Việt Nam
             const giaVND = sanPham.price.toLocaleString('vi-VN') + ' ₫';
 
-            // Tạo nút Size
             let sizeHTML = '';
             if (sanPham.sizes && sanPham.sizes.length > 0) {
                 sizeHTML = '<div class="lua-chon-size">';
-                sanPham.sizes.forEach(size => {
-                    sizeHTML += `<span class="size-badge">${size}</span>`;
-                });
+                sanPham.sizes.forEach(size => { sizeHTML += `<span class="size-badge">${size}</span>`; });
                 sizeHTML += '</div>';
             }
 
-            // HTML của thẻ sản phẩm
             the.innerHTML = `
                 <div class="khung-anh-the">
                     <a href="pages/product-detail.html?id=${sanPham.id}" class="xem-chi-tiet-anh">
@@ -245,12 +241,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="than-the">
                     <span class="danh-muc-the">${sanPham.category}</span>
-                    <h3 class="tieu-de-the">
-                        <a href="pages/product-detail.html?id=${sanPham.id}">${sanPham.name}</a>
-                    </h3>
-                    
+                    <h3 class="tieu-de-the"><a href="pages/product-detail.html?id=${sanPham.id}">${sanPham.name}</a></h3>
                     ${sizeHTML}
-
                     <div class="chan-the">
                         <span class="gia">${giaVND}</span>
                         <div class="nhom-nut">
@@ -263,58 +255,29 @@ document.addEventListener('DOMContentLoaded', () => {
             luoiSanPham.appendChild(the);
         });
 
-        // Gán sự kiện click cho các nút trong thẻ sản phẩm
+        // Gán events
         document.querySelectorAll('.nut-xem-chi-tiet').forEach(nut => {
             nut.addEventListener('click', (e) => moModalSanPham(parseInt(e.target.dataset.id)));
         });
         document.querySelectorAll('.nut-them-gio').forEach(nut => {
-            nut.addEventListener('click', () => xuLyThemGioHang());
-        });
-    }
-
-    // Logic Lọc theo Danh mục (Nút lọc)
-    const cacNutLoc = document.querySelectorAll('.nut-loc');
-    if (cacNutLoc.length > 0 && typeof danhSachSanPham !== 'undefined') {
-        cacNutLoc.forEach(nut => {
-            nut.addEventListener('click', () => {
-                // UI: Đổi class active
-                cacNutLoc.forEach(n => n.classList.remove('kich-hoat'));
-                nut.classList.add('kich-hoat');
-
-                // Logic: Lọc dữ liệu
-                const danhMuc = nut.dataset.danhmuc;
-                let sanPhamLoc = [];
-                
-                if (danhMuc === 'all') {
-                    sanPhamLoc = danhSachSanPham;
-                    if(tieuDeKetQua) tieuDeKetQua.textContent = "Tất cả sản phẩm";
-                } else {
-                    sanPhamLoc = danhSachSanPham.filter(sp => sp.category === danhMuc);
-                    if(tieuDeKetQua) tieuDeKetQua.textContent = `Danh mục: ${danhMuc}`;
-                }
-                
-                // Render lại
-                hienThiSanPham(sanPhamLoc);
+            nut.addEventListener('click', (e) => {
+                e.stopPropagation();
+                xuLyThemGioHang(parseInt(nut.dataset.id));
             });
         });
     }
 
-    // Logic Tìm kiếm
     function thucHienTimKiem() {
         if (!oTimKiem || typeof danhSachSanPham === 'undefined') return;
-        
         const tuKhoa = oTimKiem.value.toLowerCase().trim();
         if (tuKhoa === '') {
             hienThiSanPham(danhSachSanPham);
             if(tieuDeKetQua) tieuDeKetQua.textContent = "Sản phẩm nổi bật";
             return;
         }
-
         const ketQua = danhSachSanPham.filter(sp => 
-            sp.name.toLowerCase().includes(tuKhoa) || 
-            sp.category.toLowerCase().includes(tuKhoa)
+            sp.name.toLowerCase().includes(tuKhoa) || sp.category.toLowerCase().includes(tuKhoa)
         );
-        
         if(tieuDeKetQua) tieuDeKetQua.textContent = `Kết quả cho: "${tuKhoa}"`;
         hienThiSanPham(ketQua);
     }
@@ -322,7 +285,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if(oTimKiem) oTimKiem.addEventListener('input', thucHienTimKiem);
     if(nutTimKiem) nutTimKiem.addEventListener('click', thucHienTimKiem);
 
-    // Modal Xem nhanh
     function moModalSanPham(idSanPham) {
         if (typeof danhSachSanPham === 'undefined') return;
         const sanPham = danhSachSanPham.find(p => p.id === idSanPham);
@@ -333,30 +295,44 @@ document.addEventListener('DOMContentLoaded', () => {
         if(danhMucModal) danhMucModal.textContent = sanPham.category;
         if(giaModal) giaModal.textContent = sanPham.price.toLocaleString('vi-VN') + ' ₫';
         if(moTaModal) moTaModal.textContent = sanPham.description;
-        
         moHopThoai('hop-thoai-san-pham');
     }
 
-    // Thêm vào giỏ hàng
-    function xuLyThemGioHang() {
+    function xuLyThemGioHang(idSanPham) {
         const user = layNguoiDungHienTai();
         if (!user) {
             alert("Vui lòng đăng nhập để mua hàng!");
             moHopThoai('hop-thoai-dang-nhap');
-        } else {
-            let dem = document.querySelector('.so-luong-gio-hang');
-            if(dem) dem.textContent = parseInt(dem.textContent) + 1;
-            alert("Đã thêm vào giỏ hàng thành công!");
+            return;
         }
+        if (typeof danhSachSanPham === 'undefined') return;
+        const sanPham = danhSachSanPham.find(p => p.id === idSanPham);
+        if (!sanPham) return;
+
+        const keyGioHang = 'apex_cart_' + user.username;
+        let gioHang = JSON.parse(localStorage.getItem(keyGioHang)) || [];
+        const itemTonTai = gioHang.find(item => item.id === idSanPham);
+        if (itemTonTai) itemTonTai.soLuong += 1;
+        else gioHang.push({ id: sanPham.id, ten: sanPham.name, gia: sanPham.price, hinh: sanPham.image, soLuong: 1 });
+
+        localStorage.setItem(keyGioHang, JSON.stringify(gioHang));
+        capNhatBadgeGioHang();
+        alert(`Đã thêm "${sanPham.name}" vào giỏ hàng!`);
+    }
+
+    function capNhatBadgeGioHang() {
+        const user = layNguoiDungHienTai();
+        const badge = document.querySelector('.so-luong-gio-hang');
+        if (!badge) return;
+        if (!user) { badge.textContent = 0; return; }
+        const keyGioHang = 'apex_cart_' + user.username;
+        const gioHang = JSON.parse(localStorage.getItem(keyGioHang)) || [];
+        const tongSoLuong = gioHang.reduce((tong, item) => tong + item.soLuong, 0);
+        badge.textContent = tongSoLuong;
     }
 
     // --- 6. KHỞI TẠO BAN ĐẦU ---
     capNhatGiaoDienXacThuc();
-    
-    // Hiển thị tất cả sản phẩm khi mới vào trang
-    if (typeof danhSachSanPham !== 'undefined') {
-        hienThiSanPham(danhSachSanPham);
-    }
 
     // --- 7. LOGIC QUÊN MẬT KHẨU ---
     const formQuenMatKhau = document.getElementById('form-quen-mat-khau');
@@ -368,4 +344,56 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = '../index.html';
         });
     }
+
+    // --- 8. LOGIC CHO TRANG TĨNH (STATIC PAGES) ---
+    // Kiểm tra nếu đang ở trang tĩnh (có id='luoi-san-pham-static') thì KHÔNG chạy hienThiSanPham()
+    // Thay vào đó, gán sự kiện trực tiếp cho các thẻ HTML tĩnh.
+    const luoiStatic = document.getElementById('luoi-san-pham-static');
+    
+    if (luoiStatic) {
+        // Đây là trang tĩnh (Category Page), gán sự kiện cho HTML có sẵn
+        document.querySelectorAll('.nut-them-gio').forEach(nut => {
+            nut.addEventListener('click', (e) => {
+                e.stopPropagation();
+                xuLyThemGioHang(parseInt(nut.dataset.id));
+            });
+        });
+        document.querySelectorAll('.nut-xem-chi-tiet').forEach(nut => {
+            nut.addEventListener('click', (e) => moModalSanPham(parseInt(e.target.dataset.id)));
+        });
+    } else {
+        // Đây là trang chủ (Dynamic), chạy render từ JS
+        if (typeof danhSachSanPham !== 'undefined') {
+            hienThiSanPham(danhSachSanPham);
+        }
+        
+        // Logic lọc (Chỉ áp dụng cho trang Dynamic)
+        const cacNutLoc = document.querySelectorAll('.nut-loc');
+        if (cacNutLoc.length > 0 && typeof danhSachSanPham !== 'undefined') {
+            cacNutLoc.forEach(nut => {
+                nut.addEventListener('click', () => {
+                    cacNutLoc.forEach(n => n.classList.remove('kich-hoat'));
+                    nut.classList.add('kich-hoat');
+                    const danhMuc = nut.dataset.danhmuc;
+                    let sanPhamLoc = (danhMuc === 'all') ? danhSachSanPham : danhSachSanPham.filter(sp => sp.category === danhMuc);
+                    hienThiSanPham(sanPhamLoc);
+                });
+            });
+        }
+    }
 });
+// ... (Code cũ giữ nguyên)
+
+    // --- XỬ LÝ LOGOUT MỚI TRONG DROPDOWN ---
+    const nutDangXuatMoi = document.getElementById('nut-dang-xuat-moi');
+    if (nutDangXuatMoi) {
+        nutDangXuatMoi.addEventListener('click', (e) => {
+            e.preventDefault(); // Ngăn chuyển trang nếu thẻ a có href="#"
+            dangXuat();
+        });
+    }
+    
+    // Giữ lại logic cũ nếu vẫn còn nút cũ ở đâu đó (phòng hờ)
+    if(nutDangXuat) nutDangXuat.addEventListener('click', dangXuat);
+
+// ... (Code cũ giữ nguyên)

@@ -1,0 +1,243 @@
+/* --- Product Detail Page Styles --- */
+
+.chi-tiet-container {
+    padding-top: 40px;
+    padding-bottom: 80px;
+}
+
+.thanh-dieu-huong-phu {
+    background: #f1f5f9;
+    padding: 15px 0;
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-bottom: 30px;
+}
+.thanh-dieu-huong-phu a { color: #334155; font-weight: 600; }
+
+/* Grid Layout: Image Left, Info Right */
+.luoi-chi-tiet {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Chia đôi màn hình */
+    gap: 40px;
+    margin-bottom: 80px;
+}
+
+/* =========================================
+   STYLE CHO BỘ SƯU TẬP ẢNH (GALLERY)
+   ========================================= */
+.bo-suu-tap-anh {
+    display: flex;
+    gap: 15px;
+    height: 500px; /* Chiều cao cố định cho khu vực ảnh */
+}
+
+/* Cột Thumbnail bên trái */
+.cot-thumbnails {
+    width: 80px; /* Chiều rộng cột thumb */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.danh-sach-thumb-wrapper {
+    flex-grow: 1;
+    overflow: hidden; /* Ẩn thanh cuộn */
+    width: 100%;
+    margin: 10px 0;
+    position: relative;
+}
+
+.danh-sach-thumb {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: transform 0.3s ease;
+}
+
+.thumb-item {
+    width: 100%;
+    height: 80px;
+    cursor: pointer;
+    border: 1px solid #eee;
+    opacity: 0.6;
+    transition: all 0.2s;
+}
+
+.thumb-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.thumb-item:hover, .thumb-item.dang-chon {
+    opacity: 1;
+    border: 1px solid var(--dark); /* Viền đen khi chọn */
+}
+
+/* Nút điều hướng Lên/Xuống */
+.nut-dieu-huong-anh {
+    width: 100%;
+    height: 30px;
+    background: #f1f5f9;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dark);
+    transition: background 0.2s;
+}
+
+.nut-dieu-huong-anh:hover {
+    background: #e2e8f0;
+    color: var(--primary);
+}
+
+/* Khung ảnh lớn bên phải */
+.khung-anh-lon {
+    flex-grow: 1; /* Chiếm phần còn lại */
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.khung-anh-lon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Hoặc contain tùy ý */
+    display: block;
+}
+
+/* =========================================
+   THÔNG TIN SẢN PHẨM
+   ========================================= */
+
+.the-danh-muc {
+    text-transform: uppercase;
+    color: var(--primary);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.tieu-de-sp {
+    font-size: 2.2rem;
+    margin: 10px 0;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.gia-sp {
+    font-size: 1.8rem;
+    color: var(--danger);
+    font-weight: 800;
+    margin-bottom: 20px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.mo-ta-ngan {
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 30px;
+    font-size: 1rem;
+}
+
+/* Selectors */
+.tuy-chon-san-pham {
+    border-top: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 25px 0;
+    margin-bottom: 30px;
+}
+
+.chon-size, .chon-so-luong { margin-bottom: 20px; }
+.chon-size label, .chon-so-luong label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--dark);
+    font-size: 0.9rem;
+}
+
+.danh-sach-size { display: flex; gap: 10px; flex-wrap: wrap; }
+.nut-size {
+    padding: 10px 20px;
+    border: 1px solid #cbd5e1;
+    background: white;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+.nut-size:hover { border-color: var(--primary); }
+.nut-size.chon {
+    border-color: var(--dark);
+    background-color: var(--dark);
+    color: white;
+}
+
+/* Quantity Counter */
+.bo-dem-so-luong {
+    display: flex;
+    align-items: center;
+    border: 1px solid #cbd5e1;
+    width: fit-content;
+    overflow: hidden;
+}
+.bo-dem-so-luong button {
+    width: 40px; height: 40px;
+    background: #f8fafc; border: none;
+    font-size: 1.2rem; cursor: pointer;
+}
+.bo-dem-so-luong input {
+    width: 50px; height: 40px;
+    text-align: center; border: none;
+    font-weight: 600; outline: none;
+}
+
+/* Action Buttons */
+.hanh-dong-sp { display: flex; gap: 15px; margin-bottom: 30px; }
+.nut-lon {
+    padding: 15px 30px;
+    font-size: 1rem;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+/* Policies */
+.chinh-sach-sp {
+    display: grid;
+    gap: 15px;
+    color: var(--gray);
+    font-size: 0.9rem;
+    border: 1px solid #eee;
+    padding: 20px;
+}
+.muc-chinh-sach { display: flex; align-items: center; gap: 10px; }
+.muc-chinh-sach i { color: var(--dark); width: 20px; text-align: center; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .luoi-chi-tiet { grid-template-columns: 1fr; gap: 30px; }
+    .bo-suu-tap-anh { flex-direction: column-reverse; height: auto; }
+    .cot-thumbnails { 
+        width: 100%; 
+        flex-direction: row; 
+        height: auto; 
+        overflow-x: auto;
+    }
+    .nut-dieu-huong-anh { display: none; /* Ẩn nút lên xuống trên mobile */ }
+    .danh-sach-thumb-wrapper { display: flex; overflow-x: scroll; height: auto; }
+    .danh-sach-thumb { flex-direction: row; }
+    .thumb-item { width: 80px; height: 80px; flex-shrink: 0; }
+    .khung-anh-lon { height: 400px; }
+}
