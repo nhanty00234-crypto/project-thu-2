@@ -529,7 +529,7 @@ img { max-width: 100%; display: block; }
     border-radius: var(--bo-goc); outline: none; transition: border 0.3s;
 }
 .nhom-form input:focus { border-color: var(--primary); }
-.thong-bao-loi { color: var(--danger); font-size: 0.85rem; margin-bottom: 10px; min-height: 20px; }
+.thong-bao-loi { color: var(--danger); font-size: 0.85rem; margin-top:-10% ; min-height: 20px;  }
 .chan-trang-xac-thuc { text-align: center; margin-top: 20px; font-size: 0.9rem; }
 .chan-trang-xac-thuc a { color: var(--primary); font-weight: 600; }
 
