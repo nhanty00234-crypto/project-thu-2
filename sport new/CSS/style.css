@@ -9,13 +9,8 @@
     --danger: #ef4444;
     --bong: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --bong-lon: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    /* ĐÃ XÓA --bo-goc */
+    --bo-goc: 8px;
     --chuyen-dong: all 0.3s ease;
-}
-
-/* ÉP BUỘC VUÔNG GÓC CHO TOÀN BỘ FORM */
-input, button, select, textarea {
-    border-radius: 0 !important;
 }
 
 * {
@@ -45,7 +40,7 @@ img { max-width: 100%; display: block; }
 .nut {
     padding: 10px 20px;
     border: none;
-    /* ĐÃ XÓA border-radius */
+    border-radius: var(--bo-goc);
     cursor: pointer;
     font-weight: 600;
     transition: var(--chuyen-dong);
@@ -67,7 +62,7 @@ img { max-width: 100%; display: block; }
     color: var(--white);
     padding: 6px 15px;
     font-size: 0.85rem;
-    /* ĐÃ XÓA border-radius */
+    border-radius: 20px;
 }
 
 .nut-vien-nho {
@@ -76,7 +71,7 @@ img { max-width: 100%; display: block; }
     color: var(--primary);
     padding: 5px 15px;
     font-size: 0.85rem;
-    /* ĐÃ XÓA border-radius */
+    border-radius: 20px;
 }
 .nut-vien-nho:hover { background: var(--primary); color: white; }
 .nut-toan-bo { width: 100%; margin-top: 10px; }
@@ -125,45 +120,68 @@ img { max-width: 100%; display: block; }
     display: block;
 }
 
-.thanh-dieu-huong { margin-right: auto; }
-.danh-sach-menu { display: flex; gap: 30px; }
+/* --- MENU ĐIỀU HƯỚNG --- */
+.thanh-dieu-huong { 
+    margin-right: 15px; 
+    flex-shrink: 0;
+}
 
-.muc-menu { height: 100%; display: flex; align-items: center; }
+.danh-sach-menu { 
+    display: flex; 
+    gap: 15px; 
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.muc-menu { 
+    height: 80px; 
+    display: flex; 
+    align-items: center; 
+} 
+
 .lien-ket-menu {
-    font-weight: 600;
-    color: var(--dark);
-    font-size: 0.95rem;
-    padding: 24px 0;
+    font-weight: 700; 
+    color: var(--dark); 
+    font-size: 0.85rem; 
+    text-transform: uppercase; 
+    padding: 0;
     position: relative;
     transition: color 0.2s;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
     cursor: pointer;
-    
+    white-space: nowrap; 
+    letter-spacing: 0.3px; 
 }
-.lien-ket-menu::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 20px; 
-    bottom: 0; left: 0;
-    background: transparent;
+
+.lien-ket-menu:hover, .muc-menu:hover .lien-ket-menu { 
+    color: var(--primary); 
 }
-.lien-ket-menu:hover, .muc-menu:hover .lien-ket-menu { color: var(--primary); }
+
 .lien-ket-menu::after {
     content: '';
     position: absolute;
     width: 0;
-    height: 2px;
-    bottom: 18px;
+    height: 3px;
+    bottom: -28px; 
     left: 0;
     background-color: var(--primary);
     transition: width 0.3s ease;
 }
-.lien-ket-menu:hover::after, .muc-menu:hover .lien-ket-menu::after { width: 100%; }
-.icon-mui-ten { font-size: 0.7rem; transition: transform 0.3s ease; }
-.muc-menu:hover .icon-mui-ten { transform: rotate(180deg); }
+.lien-ket-menu:hover::after, .muc-menu:hover .lien-ket-menu::after { 
+    width: 100%; 
+}
+
+.icon-mui-ten { 
+    font-size: 0.65rem; 
+    transition: transform 0.3s ease; 
+    margin-left: 2px; 
+}
+.muc-menu:hover .icon-mui-ten { 
+    transform: rotate(180deg); 
+}
 
 /* --- Menu Mở Rộng (Mega Menu) --- */
 .menu-mo-rong {
@@ -211,28 +229,10 @@ img { max-width: 100%; display: block; }
 }
 .cot-menu ul li a:hover { color: var(--primary); padding-left: 5px; }
 
-.cot-quang-cao {
-    position: relative; 
-    /* ĐÃ XÓA border-radius */
-    overflow: hidden; box-shadow: var(--bong);
-    height: 100%; min-height: 200px;
-}
-.cot-quang-cao img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-.cot-quang-cao span {
-    position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
-    background: rgba(255, 255, 255, 0.95); color: var(--dark);
-    padding: 8px 20px; 
-    /* ĐÃ XÓA border-radius */
-    font-weight: 700; font-size: 0.8rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); white-space: nowrap;
-}
-.cot-quang-cao:hover img { transform: scale(1.1); }
-
 /* --- Khu Vực Chức Năng Header --- */
 .hop-tim-kiem {
     display: flex; background: var(--light);
-    /* ĐÃ XÓA border-radius */
-    padding: 5px 15px;
+    border-radius: 20px; padding: 5px 15px;
     border: 1px solid #e2e8f0; margin-right: 20px;
 }
 .hop-tim-kiem input {
@@ -243,8 +243,25 @@ img { max-width: 100%; display: block; }
 
 .khu-vuc-chuc-nang { display: flex; align-items: center; gap: 15px; }
 .nhom-nut-xac-thuc { display: flex; gap: 10px; }
-.thong-tin-nguoi-dung { display: flex; align-items: center; gap: 15px; }
+
+/* -- PHẦN ĐƯỢC CHỈNH SỬA: USER INFO -- */
+.thong-tin-nguoi-dung { 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; /* Căn chỉnh khoảng cách đẹp hơn */
+}
+
+/* Class mới thêm để fix lỗi xuống dòng chữ Xin chào */
+.loi-chao-ngang {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap; /* Bắt buộc 1 dòng */
+    font-size: 0.9rem;
+}
+
 .ten-nguoi-dung { font-weight: bold; color: var(--primary); font-size: 0.9rem; }
+
 .lien-ket-dang-xuat {
     background: none; border: none; cursor: pointer;
     color: var(--gray); text-decoration: underline; font-size: 0.85rem;
@@ -255,7 +272,7 @@ img { max-width: 100%; display: block; }
     background: var(--danger); color: white;
     font-size: 0.7rem; font-weight: bold;
     width: 18px; height: 18px;
-    /* ĐÃ XÓA border-radius: 50% -> Giờ là hình vuông */
+    border-radius: 50%;
     display: flex; justify-content: center; align-items: center;
 }
 
@@ -304,7 +321,6 @@ img { max-width: 100%; display: block; }
     margin-left: 60px;
 }
 
-/* Hiệu ứng chữ trong slide */
 .tam-slide .the-tag-slide,
 .tam-slide h1,
 .tam-slide .nut-slide {
@@ -333,7 +349,7 @@ img { max-width: 100%; display: block; }
     margin-bottom: 10px;
     background: rgba(0,0,0,0.6);
     padding: 5px 10px;
-    /* ĐÃ XÓA border-radius */
+    border-radius: 4px;
 }
 
 .tam-slide h1 {
@@ -345,7 +361,6 @@ img { max-width: 100%; display: block; }
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
-/* Điều khiển Slider */
 .mui-ten-slider {
     position: absolute;
     top: 50%;
@@ -354,7 +369,7 @@ img { max-width: 100%; display: block; }
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: var(--white);
     width: 50px; height: 50px;
-    /* ĐÃ XÓA border-radius: 50% -> Giờ là hình vuông */
+    border-radius: 50%;
     cursor: pointer;
     z-index: 10;
     font-size: 1.2rem;
@@ -368,7 +383,6 @@ img { max-width: 100%; display: block; }
 .mui-ten-slider.truoc { left: 30px; }
 .mui-ten-slider.sau { right: 30px; }
 
-/* Các chấm điều hướng */
 .cac-cham-dieu-huong {
     position: absolute;
     bottom: 30px;
@@ -381,7 +395,7 @@ img { max-width: 100%; display: block; }
 .cham {
     width: 12px; height: 12px;
     background: rgba(255, 255, 255, 0.3);
-    /* ĐÃ XÓA border-radius: 50% -> Giờ là hình vuông */
+    border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s;
 }
@@ -390,7 +404,6 @@ img { max-width: 100%; display: block; }
     transform: scale(1.2);
 }
 
-/* -- Hiệu ứng Animation cho Sản phẩm -- */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
@@ -399,11 +412,9 @@ img { max-width: 100%; display: block; }
 .luoi-san-pham { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 30px; margin-bottom: 60px; }
 
 .the-san-pham {
-    background: var(--white); 
-    /* ĐÃ XÓA border-radius */
+    background: var(--white); border-radius: var(--bo-goc);
     box-shadow: var(--bong); overflow: hidden;
     transition: var(--chuyen-dong); display: flex; flex-direction: column;
-    /* Kích hoạt Animation */
     animation: fadeIn 0.4s ease-out forwards;
 }
 .the-san-pham:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
@@ -412,7 +423,6 @@ img { max-width: 100%; display: block; }
 .khung-anh-the img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
 .the-san-pham:hover img { transform: scale(1.05); }
 
-/* Link ảnh (mới) */
 .xem-chi-tiet-anh {
     display: block;
     width: 100%;
@@ -422,28 +432,12 @@ img { max-width: 100%; display: block; }
 
 .than-the { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
 .danh-muc-the { font-size: 0.75rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; }
-.tieu-de-the { 
-    font-size: 0.85rem !important;
-    font-weight: 700 !important;
-    text-transform: uppercase;
-    color: #333;
-    margin: 12px 0 5px 0 !important;
-    line-height: 1.3;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    height: 2.6em;
-}
-.tieu-de-the a { text-decoration: none; color: inherit; transition: color 0.2s; }
-.tieu-de-the a:hover { color: var(--primary); }
-
+.tieu-de-the { font-size: 1.1rem; font-weight: 700; margin-bottom: 5px; }
 .mo-ta-the {
     font-size: 0.9rem; color: var(--gray); margin-bottom: 15px;
     display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
 }
 
-/* Style cho Size Badge (mới) */
 .lua-chon-size {
     display: flex;
     gap: 5px;
@@ -455,7 +449,7 @@ img { max-width: 100%; display: block; }
     font-size: 0.75rem;
     padding: 2px 8px;
     border: 1px solid #e2e8f0;
-    /* ĐÃ XÓA border-radius */
+    border-radius: 4px;
     color: var(--gray);
     background-color: #f8fafc;
     cursor: default;
@@ -475,7 +469,7 @@ img { max-width: 100%; display: block; }
 .menu-user-dropdown {
     display: flex;
     gap: 10px;
-    margin-left: 10px;
+    margin-left: 5px;
 }
 
 .menu-user-dropdown a {
@@ -504,8 +498,7 @@ img { max-width: 100%; display: block; }
 .hop-thoai.hien { display: flex; }
 .noi-dung-hop-thoai {
     background-color: var(--white); width: 90%; max-width: 800px;
-    /* ĐÃ XÓA border-radius */
-    position: relative; overflow: hidden;
+    border-radius: var(--bo-goc); position: relative; overflow: hidden;
     animation: slideIn 0.3s ease;
 }
 .noi-dung-xac-thuc { max-width: 400px; padding: 40px; }
@@ -524,10 +517,7 @@ img { max-width: 100%; display: block; }
 .thong-tin-hop-thoai h2 { font-size: 2rem; margin: 10px 0; }
 .gia-hop-thoai { font-size: 1.5rem; color: var(--primary); font-weight: bold; margin-bottom: 20px; }
 .hanh-dong-hop-thoai { margin-top: auto; display: flex; gap: 10px; }
-.hanh-dong-hop-thoai select { 
-    padding: 10px; border: 1px solid #ddd; 
-    /* ĐÃ XÓA border-radius */
-}
+.hanh-dong-hop-thoai select { padding: 10px; border: 1px solid #ddd; border-radius: var(--bo-goc); }
 
 .dau-trang-xac-thuc { text-align: center; margin-bottom: 20px; }
 .dau-trang-xac-thuc h2 { margin-bottom: 5px; }
@@ -536,8 +526,7 @@ img { max-width: 100%; display: block; }
 .nhom-form label { display: block; margin-bottom: 5px; font-weight: 500; font-size: 0.9rem; }
 .nhom-form input {
     width: 100%; padding: 10px; border: 1px solid #e2e8f0;
-    /* ĐÃ XÓA border-radius */
-    outline: none; transition: border 0.3s;
+    border-radius: var(--bo-goc); outline: none; transition: border 0.3s;
 }
 .nhom-form input:focus { border-color: var(--primary); }
 .thong-bao-loi { color: var(--danger); font-size: 0.85rem; margin-bottom: 10px; min-height: 20px; }
@@ -572,19 +561,20 @@ img { max-width: 100%; display: block; }
 }
 
 /* ======================================================
-   CẤU TRÚC MENU NGANG (FLEXBOX)
+   CẤU TRÚC MENU NGANG (FLEXBOX) - ÁP DỤNG CHUNG
    ====================================================== */
+
 .mega-menu-flex .noi-dung-menu-flex {
     display: flex !important;        
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
+    flex-direction: row !important;  
+    flex-wrap: nowrap !important;    
     gap: 40px;                       
     padding: 30px 40px;
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
     justify-content: flex-start;
-    overflow-x: auto;
+    overflow-x: auto; 
 }
 
 .mega-column {
@@ -601,7 +591,6 @@ img { max-width: 100%; display: block; }
     padding-bottom: 8px;
     border-bottom: 2px solid #e2e8f0;
     display: block;
-  
 }
 
 .mega-column ul {
@@ -631,11 +620,8 @@ img { max-width: 100%; display: block; }
     display: none !important;
 }
 
-/* ======================================================
-   STYLE ĐẶC BIỆT CHO MỤC "ƯU ĐÃI" (HOT)
-   ====================================================== */
 .menu-uu-dai {
-    color: #ef4444 !important;
+    color: #ef4444 !important; 
     font-weight: 800 !important;
     position: relative;
     display: inline-flex !important;
@@ -643,7 +629,7 @@ img { max-width: 100%; display: block; }
 }
 
 .menu-uu-dai:hover {
-    color: #dc2626 !important;
+    color: #dc2626 !important; 
     text-decoration: underline;
 }
 
@@ -654,6 +640,7 @@ img { max-width: 100%; display: block; }
     color: white;
     font-size: 9px;
     padding: 2px 6px;
+    border-radius: 4px;
     margin-left: 8px;
     vertical-align: middle;
     font-weight: 700;
@@ -667,174 +654,40 @@ img { max-width: 100%; display: block; }
     100% { transform: scale(1); }
 }
 
-/* =========================================
-   STYLE CHO MENU TÀI KHOẢN (USER DROPDOWN)
-   ========================================= */
-.tai-khoan-wrapper {
-    position: relative;
+/* ======================================================
+   PHẦN BỔ SUNG: FIX GIAO DIỆN & HIỆU ỨNG (Added by Gemini)
+   ====================================================== */
+
+/* 1. Fix lỗi xuống dòng ở phần "Xin chào..." (Header) */
+.loi-chao-ngang {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap; /* Bắt buộc 1 dòng */
+    font-size: 0.9rem;
+    color: inherit;
+}
+
+.thong-tin-nguoi-dung {
+    /* Đảm bảo khung user nằm ngang */
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-left: 10px;
-    padding-bottom: 10px;
-    margin-bottom: -10px;
 }
 
-.icon-header-user {
-    font-size: 1.3rem;
-    color: var(--dark);
-    transition: color 0.3s;
+/* 2. Hiệu ứng Hover cho Logo (Phóng to nhẹ) */
+.logo-thuong-hieu {
+    display: block;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.logo-thuong-hieu:hover {
+    transform: scale(1.05); /* Phóng to 5% */
+    opacity: 0.9;
     cursor: pointer;
 }
 
-.icon-header-user:hover {
-    color: var(--primary);
-}
-
-.user-dropdown-menu {
-    position: absolute;
-    top: 100%; 
-    right: 0;
-    width: 260px;
-    background-color: #fff;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15); 
-    padding: 0;
-    display: none; 
-    z-index: 2000;
-    border: 1px solid #f0f0f0;
-    animation: fadeIn 0.2s ease-in-out;
-}
-
-.tai-khoan-wrapper:hover .user-dropdown-menu {
-    display: block;
-}
-
-.mui-ten-len {
-    position: absolute;
-    top: -6px;
-    right: 14px;
-    width: 12px;
-    height: 12px;
-    background-color: #fff;
-    transform: rotate(45deg);
-    border-top: 1px solid #f0f0f0;
-    border-left: 1px solid #f0f0f0;
-}
-
-.tieu-de-dropdown {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #111;
-    padding: 15px 20px 10px 20px;
-    margin: 0;
-    border-bottom: 1px solid transparent;
-}
-
-.list-dropdown {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.list-dropdown li a {
-    display: block;
-    padding: 10px 20px;
-    color: #555;
-    font-size: 0.95rem;
-    text-decoration: none;
-    transition: background 0.2s, color 0.2s;
-}
-
-.list-dropdown li a:hover {
-    background-color: #f8fafc;
-    color: var(--primary);
-}
-
-.line-separate {
-    height: 1px;
-    background-color: #eee;
-    margin: 5px 0;
-}
-
-#nut-dang-xuat-moi {
-    color: #555;
-}
-#nut-dang-xuat-moi:hover {
-    color: var(--danger); 
-}
-
-/* =========================================
-   CẬP NHẬT: CARD SẢN PHẨM & HOVER GALLERY
-   ========================================= */
-
-/* 1. Tên sản phẩm nhỏ gọn (Giống tham khảo) */
-.tieu-de-the {
-    font-size: 0.85rem !important; /* Chữ nhỏ hơn */
-    font-weight: 700 !important;   /* In đậm */
-    text-transform: uppercase;     /* In hoa toàn bộ */
-    color: #333;
-    margin: 12px 0 5px 0 !important;
-    line-height: 1.3;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    height: 2.6em; /* Giới hạn chiều cao */
-}
-
-.tieu-de-the a {
-    text-decoration: none;
-    color: inherit;
-    transition: color 0.2s;
-}
-
-.tieu-de-the a:hover {
-    color: var(--primary);
-}
-
-/* 2. Hiệu ứng Hover Gallery (4 ảnh nhỏ) */
-.khung-anh-the {
-    position: relative; /* Để định vị gallery tuyệt đối bên trong */
-    /* overflow: hidden; -> Tạm bỏ để gallery không bị cắt nếu muốn hiện ra ngoài, nhưng ở đây ta hiện đè lên */
-}
-
-.hover-gallery {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 25%; /* Chiếm 1/4 chiều cao ảnh chính */
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Chia 4 cột */
-    gap: 2px;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 2px;
-    
-    /* Mặc định ẩn */
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(10px);
-    transition: all 0.3s ease;
-    z-index: 5;
-}
-
-.hover-gallery img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border: 1px solid #eee;
-    cursor: pointer;
-    display: block;
-}
-
-.hover-gallery img:hover {
-    border-color: var(--primary);
-    opacity: 0.8;
-}
-
-/* Khi di chuột vào khung ảnh thì hiện gallery */
-.khung-anh-the:hover .hover-gallery {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+/* 3. Hiệu ứng Hover cho Menu Trang chủ */
+.lien-ket-menu:hover {
+    text-shadow: 0 0 1px rgba(37, 99, 235, 0.5); /* Tạo bóng chữ nhẹ */
 }
