@@ -392,8 +392,5 @@ document.addEventListener('DOMContentLoaded', () => {
             dangXuat();
         });
     }
-    
-    // Giữ lại logic cũ nếu vẫn còn nút cũ ở đâu đó (phòng hờ)
-    if(nutDangXuat) nutDangXuat.addEventListener('click', dangXuat);
 
 // ... (Code cũ giữ nguyên)
